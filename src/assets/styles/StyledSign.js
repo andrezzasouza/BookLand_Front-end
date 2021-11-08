@@ -56,7 +56,7 @@ const StyledInput = styled.input`
   outline: none;
 
   :not(:placeholder-shown):invalid {
-    border: 2px solid red;
+    background-color: #e28c8c;
   }
 `;
 const StyledAlertBox = styled.span`

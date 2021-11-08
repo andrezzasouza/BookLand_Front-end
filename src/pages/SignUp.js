@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import InputContext from '../store/InputContext';
 import {
   StyledPageContainer,
   StyledSignContent,
@@ -12,6 +13,58 @@ import {
 } from '../assets/styles/StyledSign';
 
 export default function SignUp() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [CPF, setCPF] = useState('');
+  const [loading, setLoading] = useState(false);
+  const passwordRules = 'Your password must contain at least 8 characters, 1 upper case letter, 1 lower case letter, 1 number and 1 special character.';
+  // const history = useHistory();
+  const { alertMessage, setAlertMessage } = useContext(InputContext);
+  const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
+
+  useEffect(() => {
+    setAlertMessage(passwordRules);
+    setLoading(false);
+  }, []);
+
+  const validateRepeatedPassword = () => {
+    if (password !== passwordConfirmation) {
+      setLoading(false);
+      setAlertMessage('Your password confirmation is wrong!');
+      setTimeout(() => setAlertMessage(passwordRules), 6000);
+      return false;
+    }
+    return true;
+  };
+
+  function signUpRequest(event) {
+    event.preventDefault();
+    setLoading(true);
+
+    const isRepeatedPasswordValid = validateRepeatedPassword();
+    if (!isRepeatedPasswordValid) return false;
+
+    setTimeout(() => setLoading(false), 2000);
+    // const signUpBody = {
+    //   name,
+    //   email,
+    //   password,
+    // };
+    // signUp(signUpBody)
+    //   .then((res) => {
+    //     setLoading(false);
+    //     history.push('/');
+    //   })
+    //   .catch((err) => {
+    //     setAlertMessage(err.response?.data);
+    //     setTimeout(() => setAlertMessage(passwordRules), 4000);
+    //     setLoading(false);
+    //   });
+    return true;
+  }
+
   return (
     <StyledPageContainer>
       <StyledSignContent>
@@ -19,17 +72,57 @@ export default function SignUp() {
           <h1>BookLand</h1>
           <h2>A fictional bookstore that sells fictional books!</h2>
         </StyledLogo>
-        <StyledForm>
-          <StyledInput />
-          <StyledInput />
-          <StyledInput />
-          <StyledInput />
-          <StyledInput />
-          <StyledAlertBox>
-            Your password must contain at least 8 characters, 1 upper case
-            letter, 1 lower case letter, 1 number and 1 special character
-          </StyledAlertBox>
-          <StyledButton>Register</StyledButton>
+        <StyledForm
+          onSubmit={(e) => {
+            setLoading(true);
+            signUpRequest(e);
+          }}
+        >
+          <StyledInput
+            placeholder="Name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            minLength="1"
+            maxLength="30"
+            required
+          />
+          <StyledInput
+            placeholder="CPF"
+            type="text"
+            value={CPF}
+            onChange={(e) => setCPF(e.target.value)}
+            maxLength="11"
+            minLength="11"
+            required
+          />
+          <StyledInput
+            placeholder="E-mail"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            maxLength="50"
+            required
+          />
+          <StyledInput
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            pattern={passwordRegex}
+            required
+          />
+          <StyledInput
+            placeholder="Password confirmation"
+            type="password"
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            required
+          />
+          <StyledAlertBox>{alertMessage}</StyledAlertBox>
+          <StyledButton type="submit" loading={loading} disabled={loading}>
+            {loading ? 'Loading...' : 'Register'}
+          </StyledButton>
         </StyledForm>
         <StyledLogSwap>
           <Link to="/sign-in" className="swapLink">
