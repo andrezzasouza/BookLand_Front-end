@@ -5,6 +5,10 @@ import React, {
   useEffect,
 } from 'react';
 import { Link } from 'react-router-dom';
+import { TiSocialInstagram } from 'react-icons/ti';
+import { MdOutlineFacebook, MdAlternateEmail } from 'react-icons/md';
+import { CgPhone } from 'react-icons/cg';
+import { IoLogoWhatsapp } from 'react-icons/io5';
 import {
   Modal,
   ModalBackground,
@@ -18,11 +22,6 @@ import {
   RightDiv,
   FrameHolder,
   SocialMediaDiv,
-  Instagram,
-  Facebook,
-  WhatsApp,
-  Email,
-  Phone,
 } from '../assets/styles/FooterStyle';
 import storeImg1 from '../assets/images/store-img1.jpg';
 import storeImg3 from '../assets/images/store-img3.jpg';
@@ -42,7 +41,7 @@ export default function Footer() {
 
   const modalKeyEvents = useCallback(
     (e) => {
-      if (e.key === 'Escape' && showModal === true) {
+      if (e.key === 'Escape' && showModal) {
         setShowModal(false);
       }
     },
@@ -131,27 +130,27 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Instagram />
+            <TiSocialInstagram className="icons-style" />
           </a>
           <a
             href="https://web.facebook.com/Bookland-111891474631482"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Facebook />
+            <MdOutlineFacebook className="icons-style" />
           </a>
           <a
             href="mailto:hello@bookland.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Email />
+            <MdAlternateEmail className="icons-style" />
           </a>
           <a href="tel:5521999999999" target="_blank" rel="noopener noreferrer">
-            <Phone />
+            <CgPhone className="icons-style" />
           </a>
           <a href="tel:5521999999999" target="_blank" rel="noopener noreferrer">
-            <WhatsApp />
+            <IoLogoWhatsapp className="icons-style" />
           </a>
         </SocialMediaDiv>
       </CenterDiv>

@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-import { TiSocialInstagram } from 'react-icons/ti';
-import { MdOutlineFacebook, MdAlternateEmail } from 'react-icons/md';
-import { CgPhone } from 'react-icons/cg';
-import { IoLogoWhatsapp } from 'react-icons/io5';
-
 const FooterContainer = styled.footer`
   width: 100%;
   height: 200px;
@@ -65,48 +60,13 @@ const FrameHolder = styled.div`
 const SocialMediaDiv = styled.div`
   display: flex;
   gap: 15px;
-  &:hover {
-    color: #5e1919;
-  }
-`;
-
-const Instagram = styled(TiSocialInstagram)`
-  color: #ffffff;
-  font-size: 48px;
-  &:hover {
-    color: #5e1919;
-  }
-`;
-
-const Facebook = styled(MdOutlineFacebook)`
-  color: #ffffff;
-  font-size: 48px;
-  &:hover {
-    color: #5e1919;
-  }
-`;
-
-const Email = styled(MdAlternateEmail)`
-  font-size: 48px;
-  color: #ffffff;
-  &:hover {
-    color: #5e1919;
-  }
-`;
-
-const Phone = styled(CgPhone)`
-  color: #ffffff;
-  font-size: 48px;
-  &:hover {
-    color: #5e1919;
-  }
-`;
-
-const WhatsApp = styled(IoLogoWhatsapp)`
-  color: #ffffff;
-  font-size: 48px;
-  &:hover {
-    color: #5e1919;
+  
+  .icons-style {
+    color: #ffffff;
+    font-size: 48px;
+    &:hover {
+      color: #5e1919;
+    }
   }
 `;
 
@@ -117,9 +77,4 @@ export {
   RightDiv,
   FrameHolder,
   SocialMediaDiv,
-  Instagram,
-  Facebook,
-  WhatsApp,
-  Email,
-  Phone,
 };
