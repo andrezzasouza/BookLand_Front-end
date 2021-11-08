@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, {
   useState,
-  // useRef,
+  useRef,
   useCallback,
   useEffect,
 } from 'react';
@@ -13,18 +13,19 @@ import { TiSocialInstagram } from 'react-icons/ti';
 import { MdOutlineFacebook, MdAlternateEmail } from 'react-icons/md';
 import { CgPhone } from 'react-icons/cg';
 import { IoLogoWhatsapp } from 'react-icons/io5';
+import storeImg from '../assets/images/store-img1.jpg';
 import logo from '../assets/images/bookland.png';
 
 export default function Footer() {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
-  // const modalRef = useRef();
+  const modalRef = useRef();
 
-  // function closeLocation(e) {
-  //   if (modalRef.current === e.target) {
-  //     setShowModal(false);
-  //   }
-  // }
+  function closeLocation(e) {
+    if (modalRef.current === e.target) {
+      setShowModal(false);
+    }
+  }
 
   const modalKeyEvents = useCallback(
     (e) => {
@@ -74,6 +75,7 @@ export default function Footer() {
                   <p onClick={() => setShowModal(false)}>X</p>
                 </TopSection>
                 <AboutBody>
+                  <img src={storeImg} alt="Bookland store" />
                   <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Quia cum itaque sed deleniti! Explicabo maxime provident
@@ -320,5 +322,4 @@ const AboutBody = styled.div`
   p {
     color: #ffffff;
   }
-
 `;
