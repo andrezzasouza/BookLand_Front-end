@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import InputContext from '../store/InputContext';
 import {
   StyledPageContainer,
@@ -10,7 +12,11 @@ import {
   StyledButton,
   StyledAlertBox,
   StyledLogSwap,
-} from '../assets/styles/StyledSign';
+} from '../assets/styles/SignStyle';
+import {
+  StyledSignUpSucessMessage,
+  StyledSignUpSucess,
+} from '../assets/styles/SignSucessStyle';
 import { signUp } from '../services/api';
 
 export default function SignUp() {
@@ -20,6 +26,7 @@ export default function SignUp() {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [CPF, setCPF] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isSignUpSucess, setIsSignUpSucess] = useState(false);
   const history = useHistory();
   const { alertMessage, setAlertMessage } = useContext(InputContext);
   const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
@@ -56,7 +63,7 @@ export default function SignUp() {
     signUp(signUpBody)
       .then(() => {
         setLoading(false);
-        history.push('/sign-in');
+        setIsSignUpSucess(true);
       })
       .catch((err) => {
         setAlertMessage(err.response?.data);
@@ -68,68 +75,93 @@ export default function SignUp() {
   return (
     <StyledPageContainer>
       <StyledSignContent>
-        <StyledLogo>
-          <h1>BookLand</h1>
-          <h2>A fictional bookstore that sells fictional books!</h2>
-        </StyledLogo>
-        <StyledForm
-          onSubmit={(e) => {
-            setLoading(true);
-            signUpRequest(e);
-          }}
-        >
-          <StyledInput
-            placeholder="Name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            minLength="1"
-            maxLength="30"
-            required
-          />
-          <StyledInput
-            placeholder="CPF"
-            type="text"
-            value={CPF}
-            onChange={(e) => setCPF(e.target.value)}
-            maxLength="11"
-            minLength="11"
-            pattern={stringWithOnlyNumbers}
-            required
-          />
-          <StyledInput
-            placeholder="E-mail"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            maxLength="50"
-            required
-          />
-          <StyledInput
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            pattern={passwordRegex}
-            required
-          />
-          <StyledInput
-            placeholder="Password confirmation"
-            type="password"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            required
-          />
-          <StyledAlertBox>{alertMessage}</StyledAlertBox>
-          <StyledButton type="submit" loading={loading} disabled={loading}>
-            {loading ? 'Loading...' : 'Register'}
-          </StyledButton>
-        </StyledForm>
-        <StyledLogSwap>
-          <Link to="/sign-in" className="swapLink">
-            Do you already have an account? Click here to sign in!
-          </Link>
-        </StyledLogSwap>
+        {isSignUpSucess ? (
+          <StyledSignUpSucess>
+            <StyledSignUpSucessMessage>
+              Your account has been created! Now you just have to sign in.
+            </StyledSignUpSucessMessage>
+            <div className="timer-wrapper">
+              <CountdownCircleTimer
+                isPlaying
+                duration={5}
+                colors={[
+                  ['#ffffff'],
+                ]}
+                size={140}
+                trailColor="#5d1919"
+                strokeWidth={12}
+                onComplete={() => history.push('/sign-in')}
+              >
+                {({ remainingTime }) => remainingTime}
+              </CountdownCircleTimer>
+            </div>
+          </StyledSignUpSucess>
+        ) : (
+          <>
+            <StyledLogo>
+              <h1>BookLand</h1>
+              <h2>A fictional bookstore that sells fictional books!</h2>
+            </StyledLogo>
+            <StyledForm
+              onSubmit={(e) => {
+                setLoading(true);
+                signUpRequest(e);
+              }}
+            >
+              <StyledInput
+                placeholder="Name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                minLength="1"
+                maxLength="30"
+                required
+              />
+              <StyledInput
+                placeholder="CPF"
+                type="text"
+                value={CPF}
+                onChange={(e) => setCPF(e.target.value)}
+                maxLength="11"
+                minLength="11"
+                pattern={stringWithOnlyNumbers}
+                required
+              />
+              <StyledInput
+                placeholder="E-mail"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                maxLength="50"
+                required
+              />
+              <StyledInput
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                pattern={passwordRegex}
+                required
+              />
+              <StyledInput
+                placeholder="Password confirmation"
+                type="password"
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+                required
+              />
+              <StyledAlertBox>{alertMessage}</StyledAlertBox>
+              <StyledButton type="submit" loading={loading} disabled={loading}>
+                {loading ? 'Loading...' : 'Register'}
+              </StyledButton>
+            </StyledForm>
+            <StyledLogSwap>
+              <Link to="/sign-in" className="swapLink">
+                Do you already have an account? Click here to sign in!
+              </Link>
+            </StyledLogSwap>
+          </>
+        )}
       </StyledSignContent>
     </StyledPageContainer>
   );
