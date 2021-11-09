@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import InputContext from '../store/InputContext';
 import {
   StyledPageContainer,
@@ -11,6 +11,7 @@ import {
   StyledAlertBox,
   StyledLogSwap,
 } from '../assets/styles/StyledSign';
+import { signUp } from '../services/api';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -20,13 +21,12 @@ export default function SignUp() {
   const [CPF, setCPF] = useState('');
   const [loading, setLoading] = useState(false);
   const passwordRules = 'Your password must contain at least 8 characters, 1 upper case letter, 1 lower case letter, 1 number and 1 special character.';
-  // const history = useHistory();
+  const history = useHistory();
   const { alertMessage, setAlertMessage } = useContext(InputContext);
   const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
 
   useEffect(() => {
     setAlertMessage(passwordRules);
-    setLoading(false);
   }, []);
 
   const validateRepeatedPassword = () => {
@@ -46,22 +46,21 @@ export default function SignUp() {
     const isRepeatedPasswordValid = validateRepeatedPassword();
     if (!isRepeatedPasswordValid) return false;
 
-    setTimeout(() => setLoading(false), 2000);
-    // const signUpBody = {
-    //   name,
-    //   email,
-    //   password,
-    // };
-    // signUp(signUpBody)
-    //   .then((res) => {
-    //     setLoading(false);
-    //     history.push('/');
-    //   })
-    //   .catch((err) => {
-    //     setAlertMessage(err.response?.data);
-    //     setTimeout(() => setAlertMessage(passwordRules), 4000);
-    //     setLoading(false);
-    //   });
+    const signUpBody = {
+      name,
+      email,
+      password,
+    };
+    signUp(signUpBody)
+      .then(() => {
+        setLoading(false);
+        history.push('/sign-in');
+      })
+      .catch((err) => {
+        setAlertMessage(err.response?.data);
+        setTimeout(() => setAlertMessage(passwordRules), 6000);
+        setLoading(false);
+      });
     return true;
   }
 
