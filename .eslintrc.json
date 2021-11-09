@@ -21,6 +21,9 @@
     "react/jsx-filename-extension": [
       0
     ],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/react-in-jsx-scope": "off"
   }
 }
