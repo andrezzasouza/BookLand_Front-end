@@ -20,10 +20,11 @@ export default function SignUp() {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [CPF, setCPF] = useState('');
   const [loading, setLoading] = useState(false);
-  const passwordRules = 'Your password must contain at least 8 characters, 1 upper case letter, 1 lower case letter, 1 number and 1 special character.';
   const history = useHistory();
   const { alertMessage, setAlertMessage } = useContext(InputContext);
   const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
+  const passwordRules = 'Your password must contain at least 8 characters, 1 upper case letter, 1 lower case letter, 1 number and 1 special character.';
+  const stringWithOnlyNumbers = '^[0-9]+$';
 
   useEffect(() => {
     setAlertMessage(passwordRules);
@@ -44,7 +45,7 @@ export default function SignUp() {
     setLoading(true);
 
     const isRepeatedPasswordValid = validateRepeatedPassword();
-    if (!isRepeatedPasswordValid) return false;
+    if (!isRepeatedPasswordValid) return;
 
     const signUpBody = {
       name,
@@ -62,7 +63,6 @@ export default function SignUp() {
         setTimeout(() => setAlertMessage(passwordRules), 6000);
         setLoading(false);
       });
-    return true;
   }
 
   return (
@@ -94,6 +94,7 @@ export default function SignUp() {
             onChange={(e) => setCPF(e.target.value)}
             maxLength="11"
             minLength="11"
+            pattern={stringWithOnlyNumbers}
             required
           />
           <StyledInput
