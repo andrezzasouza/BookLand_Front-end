@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     body,
@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     h3,
     h4,
     h5,
-    h6,
+    h3,
     p,
     blockquote,
     pre,
@@ -146,5 +146,5 @@ const GlobalStyle = createGlobalStyle`
     a {
         text-decoration: none;
     }
-`
+`;
 export default GlobalStyle;
