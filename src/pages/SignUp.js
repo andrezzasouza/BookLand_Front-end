@@ -50,6 +50,7 @@ export default function SignUp() {
       name,
       email,
       password,
+      CPF,
     };
     signUp(signUpBody)
       .then(() => {
