@@ -11,8 +11,8 @@ const createHeaders = (token) => {
     };
 }
 
-const sendNewRecord = ( token, body ) =>
-    axios.post(`${API_URL}/records`, body, createHeaders(token));
+//const sendNewRecord =
+( token, body ) => axios.post(`${API_URL}/records`, body, createHeaders(token));
 
 export {
 
