@@ -11,7 +11,6 @@ import img8 from '../assets/images/carousel-8.jpg';
 import img9 from '../assets/images/carousel-9.jpg';
 import img10 from '../assets/images/carousel-10.jpg';
 import img11 from '../assets/images/carousel-11.jpg';
-import img12 from '../assets/images/carousel-12.jpg';
 
 export default () => (
   <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
@@ -48,16 +47,12 @@ export default () => (
     <CarouselPage>
       <img alt="" src={img11} />
     </CarouselPage>
-    <CarouselPage>
-      <img alt="" src={img12} />
-    </CarouselPage>
   </Carousel>
 );
 
 const CarouselPage = styled.div`
+  object-fit: contain;
   img {
-    object-fit: cover;
-    height: 500px;
     vertical-align: middle;
   }
 `;
