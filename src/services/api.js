@@ -1,20 +1,14 @@
-/*
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "";
+const API_URL = 'http://localhost:3001';
 
-const createHeaders = (token) => {
-    return {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    };
-}
+// const createHeaders = (token) => ({
+//   headers: {
+//     Authorization: `Bearer ${token}`,
+//   },
+// });
 
-const sendNewRecord = ( token, body ) =>
-    axios.post(`${API_URL}/records`, body, createHeaders(token));
+const signUp = (body) => axios.post(`${API_URL}/sign-up`, body);
+const signIn = (body) => axios.post(`${API_URL}/sign-in`, body);
 
-export {
-
-}
-*/
+export { signUp, signIn };
