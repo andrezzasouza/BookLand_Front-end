@@ -26,6 +26,10 @@ export default function SignIn() {
   const initialMessage = 'Login with your account!';
 
   useEffect(() => {
+    if (localStorage.getItem('userSession') !== null) {
+      history.push('/');
+      return;
+    }
     setAlertMessage(initialMessage);
   }, []);
 
@@ -43,6 +47,7 @@ export default function SignIn() {
           token,
           picture,
         } = res.data;
+        localStorage.setItem('userSession', JSON.stringify(token));
         setLoading(false);
         setToken(token);
         setUserImg(picture);
