@@ -116,6 +116,7 @@ export default function SignUp() {
                 minLength="1"
                 maxLength="30"
                 required
+                disabled={loading}
               />
               <StyledInput
                 placeholder="CPF"
@@ -126,6 +127,7 @@ export default function SignUp() {
                 minLength="11"
                 pattern={stringWithOnlyNumbers}
                 required
+                disabled={loading}
               />
               <StyledInput
                 placeholder="E-mail"
@@ -134,6 +136,7 @@ export default function SignUp() {
                 onChange={(e) => setEmail(e.target.value)}
                 maxLength="50"
                 required
+                disabled={loading}
               />
               <StyledInput
                 placeholder="Password"
@@ -142,6 +145,7 @@ export default function SignUp() {
                 onChange={(e) => setPassword(e.target.value)}
                 pattern={passwordRegex}
                 required
+                disabled={loading}
               />
               <StyledInput
                 placeholder="Password confirmation"
@@ -149,6 +153,7 @@ export default function SignUp() {
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 required
+                disabled={loading}
               />
               <StyledAlertBox>{alertMessage}</StyledAlertBox>
               <StyledButton type="submit" loading={loading} disabled={loading}>

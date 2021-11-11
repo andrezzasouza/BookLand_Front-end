@@ -24,15 +24,15 @@ const StyledLogo = styled.div`
   justify-content: center;
   font-family: 'Righteous', cursive;
   color: #ffffff;
-  gap: 20px;
-  margin-bottom: 50px;
+  gap: 10px;
+  margin-bottom: 40px;
   h1 {
     font-weight: 700;
-    font-size: 70px;
+    font-size: 60px;
   }
   h2 {
     font-weight: 400;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
   }
 `;
@@ -42,7 +42,7 @@ const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
   width: 100%;
-  gap: 15px;
+  gap: 13px;
 `;
 const StyledInput = styled.input`
   height: 50px;
@@ -61,7 +61,7 @@ const StyledInput = styled.input`
 `;
 const StyledAlertBox = styled.span`
   color: #ffffff;
-  font-size: 15px;
+  font-size: 16px;
   width: 100%;
   text-align: left;
   line-height: 20px;
@@ -76,16 +76,16 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 23.5px;
   border-radius: 5px;
   border: none;
   opacity: ${({ loading }) => (loading ? 0.6 : 1)};
   cursor: pointer;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   :hover,
   :active {
-    transform: translate(3px, -3px);
+    transform: translateY(-3px);
   }
 `;
 const StyledLogSwap = styled.div`
@@ -101,6 +101,9 @@ const StyledLogSwap = styled.div`
     font-weight: 700;
     font-size: 15px;
     text-align: center;
+    :hover {
+      color: #5E1919;
+    }
   }
 `;
 
