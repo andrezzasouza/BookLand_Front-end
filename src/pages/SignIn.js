@@ -21,7 +21,7 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { alertMessage, setAlertMessage } = useContext(InputContext);
-  const { setToken } = useContext(UserContext);
+  const { setToken, setUserImg } = useContext(UserContext);
   const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
   const initialMessage = 'Login with your account!';
 
@@ -41,9 +41,11 @@ export default function SignIn() {
       .then((res) => {
         const {
           token,
+          picture,
         } = res.data;
         setLoading(false);
         setToken(token);
+        setUserImg(picture);
         history.push('/');
       })
       .catch((err) => {

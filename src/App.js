@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
@@ -9,9 +10,10 @@ import TransitionStyle from './assets/styles/TransitionStyle';
 export default function App() {
   const [token, setToken] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
+  const [userImg, setUserImg] = useState('');
 
   return (
-    <UserContext.Provider value={{ token, setToken }}>
+    <UserContext.Provider value={{ token, setToken, userImg, setUserImg }}>
       <InputContext.Provider value={{ alertMessage, setAlertMessage }}>
         <Router>
           <GlobalStyle />
