@@ -13,7 +13,6 @@ import {
   StyledLogSwap,
 } from '../assets/styles/SignStyle';
 import { signIn } from '../services/api';
-import UserContext from '../store/UserContext.js';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -21,7 +20,6 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { alertMessage, setAlertMessage } = useContext(InputContext);
-  const { setToken, setUserImg } = useContext(UserContext);
   const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
   const initialMessage = 'Login with your account!';
 
@@ -43,14 +41,8 @@ export default function SignIn() {
     };
     signIn(signInBody)
       .then((res) => {
-        const {
-          token,
-          picture,
-        } = res.data;
-        localStorage.setItem('userSession', JSON.stringify(token));
+        localStorage.setItem('userSession', JSON.stringify(res.data));
         setLoading(false);
-        setToken(token);
-        setUserImg(picture);
         history.push('/');
       })
       .catch((err) => {
