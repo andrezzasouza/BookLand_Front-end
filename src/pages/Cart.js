@@ -2,11 +2,12 @@ import { IoTrashBin as TrashIcon } from 'react-icons/io5';
 import styled from 'styled-components';
 import PageContentContainer from '../assets/styles/PageModelStyle.js';
 import TitleBox from '../components/TitleBox.js';
+import cartImg from '../assets/images/cart-background.jpg';
 
 export default function Cart() {
   return (
     <>
-      <TitleBox pageTitle="Shopping Cart" />
+      <TitleBox pageTitle="Shopping Cart" backgroundImg={cartImg} />
       <PageContentContainer>
         <CartContainer>
           <SectionsAndContent>
@@ -24,7 +25,7 @@ export default function Cart() {
                   <h2>Title</h2>
                   <h3>Price</h3>
                   <InfoButtons>
-                    <button type="button">1</button>
+                    <input type="number" min="0" max="100" />
                     <TrashIcon className="trash-icon" />
                   </InfoButtons>
                 </BookInfo>
@@ -43,7 +44,7 @@ export default function Cart() {
                   <h2>Title</h2>
                   <h3>Price</h3>
                   <InfoButtons>
-                    <button type="button">1</button>
+                    <input type="number" min="0" max="100" />
                     <TrashIcon className="trash-icon" />
                   </InfoButtons>
                 </BookInfo>
@@ -62,7 +63,7 @@ export default function Cart() {
                   <h2>Title</h2>
                   <h3>Price</h3>
                   <InfoButtons>
-                    <button type="button">1</button>
+                    <input type="number" min="0" max="100" />
                     <TrashIcon className="trash-icon" />
                   </InfoButtons>
                 </BookInfo>
@@ -137,7 +138,7 @@ const BookAndInfo = styled.div`
   border-bottom: 1px solid #000000;
   padding-bottom: 20px;
   img {
-    width: 150px;
+    width: 185px;
   }
   ul {
     width: 500px;
@@ -163,9 +164,25 @@ const InfoButtons = styled.span`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  button {
-    width: 100px;
-    height: 30px;
+  input {
+    width: 55px;
+    height: 40px;
+    border: none;
+    background-color: #AE3E3E;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 25px;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 13px;
+  }
+  input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    margin-right: -2px;
+    border-radius: 10px;
+
   }
   .trash-icon {
     font-size: 40px;

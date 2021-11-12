@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 
-export default function TitleBox({ pageTitle }) {
+export default function TitleBox({ pageTitle, backgroundImg }) {
   return (
     <TitleContainer>
       <h1>{pageTitle}</h1>
+      <img src={backgroundImg} alt="" />
     </TitleContainer>
   );
 }
@@ -16,10 +17,16 @@ const TitleContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #C4C4C4;
+    position: relative;
+    overflow: hidden;
+    img {
+      width: 100%; 
+    }
     h1 {
       font-family: 'Righteous', cursive;
       font-size: 40px;
-      color: #000000;
+      color: #ffffff;
+      text-shadow: #000000 -10px 7px 9px;
+      position: absolute;
     }
 `;
