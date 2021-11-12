@@ -15,13 +15,13 @@ export default function AppRoutes() {
     <TransitionGroup>
       <CSSTransition timeout={300} classNames="fade-drop" key={location.key}>
         <Switch location={location}>
+          <Route exact path="/cart" component={Cart} />
           <Route exact path="/sign-up" component={SignUp} />
+          <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/" component={Home} />
           <Route exact path="/:categoryName" component={Category} />
           <Route exact path="/:productName" component={Product} />
-          <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/cart" component={Cart} />
         </Switch>
       </CSSTransition>
     </TransitionGroup>
