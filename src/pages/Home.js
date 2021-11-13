@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import HomeCarousel from '../components/Carousel';
 import HomeContainer from '../components/HomeContainer';
 import Footer from '../components/Footer';
-import home from '../services/api';
+import { home } from '../services/api';
 
 export default function Home() {
   const [books, setBooks] = useState([]);
