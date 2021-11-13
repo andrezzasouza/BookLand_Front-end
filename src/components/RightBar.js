@@ -7,54 +7,44 @@ export default function RightBar({ cartSection, setCartSection }) {
 
   return (
     <RightBarContainer>
-      {cartSection === 'cart' ? (
-        <>
-          <h1>Order Summary</h1>
-          <RightBarProductPrice>
-            <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
-            <b>PRICE</b>
-          </RightBarProductPrice>
-          <RightBarTotalBox>
-            <span>Total</span>
-            <span>VALOR TOTAL</span>
-          </RightBarTotalBox>
+      <>
+        <h1>Order Summary</h1>
+        <RightBarProductPrice>
+          <p>NOME PRODUTOsdafasdfasdf fasdfnfskaddfasdfasdfsdfasdfasdfas</p>
+          <b>1x PRICEsdafasd</b>
+        </RightBarProductPrice>
+        <RightBarTotalBox>
+          <span>Total</span>
+          <span>VALOR TOTAL</span>
+        </RightBarTotalBox>
+        {cartSection !== 'cart' ? (
+          <>
+            <SubTitle>Adress</SubTitle>
+            <SubInfo>Endereço aqiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiii</SubInfo>
+          </>
+        ) : ('')}
+        {cartSection === 'payment' ? (
+          <>
+            <SubTitle>Payment</SubTitle>
+            <SubInfo>Pagamento aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiii</SubInfo>
+          </>
+        ) : ('')}
+        {cartSection === 'cart' ? (
           <NextSectionButton onClick={() => setCartSection('delivery')}>
-            Proceed to delivery information
+            Proceed to delivery section
           </NextSectionButton>
-        </>
-      ) : ('')}
-      {cartSection === 'delivery' ? (
-        <>
-          <h1>Delivery Information</h1>
-          <RightBarProductPrice>
-            <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
-            <b>PRICE</b>
-          </RightBarProductPrice>
-          <RightBarTotalBox>
-            <span>Total</span>
-            <span>VALOR TOTAL</span>
-          </RightBarTotalBox>
+        ) : ('')}
+        {cartSection === 'delivery' ? (
           <NextSectionButton onClick={() => setCartSection('payment')}>
-            Proceed to checkout
+            Proceed to checkout section
           </NextSectionButton>
-        </>
-      ) : ('')}
-      {cartSection === 'payment' ? (
-        <>
-          <h1>Checkout</h1>
-          <RightBarProductPrice>
-            <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
-            <b>PRICE</b>
-          </RightBarProductPrice>
-          <RightBarTotalBox>
-            <span>Total</span>
-            <span>VALOR TOTAL</span>
-          </RightBarTotalBox>
+        ) : ('')}
+        {cartSection === 'payment' ? (
           <NextSectionButton>
             Checkout
           </NextSectionButton>
-        </>
-      ) : ('')}
+        ) : ('')}
+      </>
       <BackToHomeButton onClick={() => history.push('/')}>
         Continue shopping
       </BackToHomeButton>
@@ -77,7 +67,7 @@ const RightBarContainer = styled.div`
     font-size: 30px;
     font-weight: 700;
     color: #000000;
-    margin-bottom: 35px;
+    margin-bottom: 27px;
   }
 `;
 const RightBarProductPrice = styled.span`
@@ -85,13 +75,13 @@ const RightBarProductPrice = styled.span`
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
-  border-top: 1px solid #a1a2a3;
+  border-top: 1px solid #000000;
   padding-top: 25px;
   font-size: 18px;
+  line-height:23px;
   p {
     word-break: break-word;
-    margin-right: 50px;
-    line-height:23px;
+    margin-right: 40px;
     max-height: 71px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -100,14 +90,16 @@ const RightBarProductPrice = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 `;
 const RightBarTotalBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border-top: 1.5px solid #000000;
-  padding-top: 25px;
+  border-top: 1px solid #a1a2a3;
+  border-bottom: 1px solid #a1a2a3;
+  padding: 25px 0px;
   span {
     font-size: 22px;
     font-weight: 700;
@@ -119,10 +111,10 @@ const NextSectionButton = styled.button`
   background-color: #AE3E3E;
   border-radius: 5px;
   color: #ffffff;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
-  padding: 15px 10px;
-  margin-top: 35px;
+  padding: 15px 12px;
+  margin-top: 25px;
   :hover {
       background-color: #5D1919;
       cursor: pointer;
@@ -130,11 +122,22 @@ const NextSectionButton = styled.button`
     }
 `;
 const BackToHomeButton = styled.div`
-  margin-top: 30px;
+  margin-top: 15px;
   color: #AE3E3E;
   align-self: center;
   :hover {
       color: #5D1919;
       cursor: pointer;
     }
+`;
+const SubTitle = styled.h2`
+  font-size: 20px;
+  font-weight: 700;
+  margin: 25px 0px 5px;
+`;
+const SubInfo = styled.h3`
+  font-size: 19px;
+  line-height:25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #a1a2a3;
 `;
