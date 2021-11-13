@@ -10,11 +10,12 @@ const createHeaders = (token) => ({
 
 const signUp = (body) => axios.post(`${API_URL}/sign-up`, body);
 const signIn = (body) => axios.post(`${API_URL}/sign-in`, body);
+const home = () => axios.get(`${API_URL}/home`);
 const getCartProducts = (token) => axios.get(`${API_URL}/cart-products`, createHeaders(token));
 const getDeliveryInfo = (token) => axios.get(`${API_URL}/delivery`, createHeaders(token));
 const getPaymentInfo = (token) => axios.get(`${API_URL}/payment`, createHeaders(token));
-const home = () => axios.get(`${API_URL}/home`);
+const deleteCartProduct = (productBody, token) => axios.delete(`${API_URL}/cart-products`, productBody, createHeaders(token));
 
 export {
-  signUp, signIn, getCartProducts, getDeliveryInfo, getPaymentInfo, home,
+  signUp, signIn, getCartProducts, getDeliveryInfo, getPaymentInfo, home, deleteCartProduct,
 };

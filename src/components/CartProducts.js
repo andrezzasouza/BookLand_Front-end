@@ -1,10 +1,18 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import styled from 'styled-components';
 import { IoTrashBin as TrashIcon } from 'react-icons/io5';
+import { deleteCartProduct } from '../services/api';
 
 export default function CartProducts({ userProducts }) {
+  const { token } = JSON.parse(localStorage.getItem('userSession'));
+
+  console.log(token);
   const removeFromCart = (bookId) => {
-    // delete requisition
+    const productBody = {
+      bookId,
+    };
+    deleteCartProduct(productBody, token);
   };
 
   return (
