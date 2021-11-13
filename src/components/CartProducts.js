@@ -3,38 +3,80 @@ import { IoTrashBin as TrashIcon } from 'react-icons/io5';
 
 export default function CartProducts() {
   return (
-    <CartItemBox>
-      <BookAndInfo>
-        <ul>
-          oi
-        </ul>
-        <BookInfo>
-          <h2>Title</h2>
-          <h3>Price</h3>
-          <InfoButtons>
-            <input type="number" min="0" max="100" />
-            <TrashIcon className="trash-icon" />
-          </InfoButtons>
-        </BookInfo>
-      </BookAndInfo>
-      <details>
-        <summary>Description</summary>
-        Description goes here
-      </details>
-    </CartItemBox>
+    <>
+      <CartItemBox>
+        <BookAndInfo>
+          <ul>
+            oi
+          </ul>
+          <BookInfo>
+            <h2>Title</h2>
+            <h3>Price</h3>
+            <InfoButtons>
+              <input type="number" min="0" max="100" />
+              <TrashIcon className="trash-icon" />
+            </InfoButtons>
+          </BookInfo>
+        </BookAndInfo>
+        <details>
+          <summary>Description</summary>
+          Description goes here
+        </details>
+      </CartItemBox>
+      <CartItemBox>
+        <BookAndInfo>
+          <ul>
+            oi
+          </ul>
+          <BookInfo>
+            <h2>Title</h2>
+            <h3>Price</h3>
+            <InfoButtons>
+              <input type="number" min="0" max="100" />
+              <TrashIcon className="trash-icon" />
+            </InfoButtons>
+          </BookInfo>
+        </BookAndInfo>
+        <details>
+          <summary>Description</summary>
+          Description goes here
+        </details>
+      </CartItemBox>
+      <CartItemBox>
+        <BookAndInfo>
+          <ul>
+            oi
+          </ul>
+          <BookInfo>
+            <h2>Title</h2>
+            <h3>Price</h3>
+            <InfoButtons>
+              <input type="number" min="0" max="100" />
+              <TrashIcon className="trash-icon" />
+            </InfoButtons>
+          </BookInfo>
+        </BookAndInfo>
+        <details>
+          <summary>Description</summary>
+          Description goes here
+        </details>
+      </CartItemBox>
+    </>
   );
 }
 
 const CartItemBox = styled.div`
   width: 100%;
-  background-color: #ffffff;
+  background-color: #e5e5e5;
   display: flex;
   flex-direction: column;
   padding: 30px;
+  border-radius: 10px;
   summary {
     font-size: 20px;
     font-weight: 700;
     padding-bottom: 15px;
+    cursor: pointer;
   }
   details {
     font-size: 18px;
@@ -51,16 +93,16 @@ const BookAndInfo = styled.div`
     width: 185px;
   }
   ul {
-    width: 500px;
-    height: 250px;
-    background-color: blue;
+    width: 350px;
+    height: 200px;
+    background-color: #9b9393;
   }
 `;
 const BookInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
+  gap: 9px;
   width: 100%;
   h2 {
     font-size: 40px;
@@ -100,6 +142,7 @@ const InfoButtons = styled.span`
     :hover {
       color: #5D1919;
       cursor: pointer;
+      transform: translateY(-3px);
     }
   }
 `;

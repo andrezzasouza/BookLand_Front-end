@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-constant-condition */
+import { IoCartSharp } from 'react-icons/io5';
 import styled from 'styled-components';
 import { useState } from 'react';
 import PageContentContainer from '../assets/styles/PageModelStyle.js';
 import TitleBox from '../components/TitleBox.js';
-import cartImg from '../assets/images/cart-background.jpg';
+import cartImg from '../assets/images/solid-color-image.jpeg';
 import CartProducts from '../components/CartProducts';
 import CartDelivery from '../components/CartDelivery';
 import CartPayment from '../components/CartPayment';
@@ -16,6 +17,7 @@ export default function Cart() {
   return (
     <>
       <TitleBox pageTitle="Shopping Cart" backgroundImg={cartImg} />
+      <CartIconTop onClick={() => window.location.reload()} />
       <PageContentContainer>
         <CartContainer>
           <TopSectionsAndContent>
@@ -59,13 +61,14 @@ const TopSections = styled.div`
   justify-content: space-evenly;
   gap: 20px;
   .section {
-    width: 150px;
-    height: 40px;
+    width: 180px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items:center;
     border-radius: 5px;
     font-weight: 700;
+    font-size: 20px;
   }
 `;
 const CartSection = styled.span`
@@ -82,4 +85,18 @@ const PaymentSection = styled.span`
     background-color: ${({ cartSection }) => (cartSection === 'payment' ? '#AE3E3E' : '#ffffff')};
     color: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '#AE3E3E')};
     border: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '2px solid #AE3E3E')};
+`;
+const CartIconTop = styled(IoCartSharp)`
+  position: absolute;
+  top: 100px;
+  font-size: 100px;
+  color: #ffffff;
+  left: 50px;
+  box-shadow: #000000 -10px 7px 9px;
+  border-radius: 10px;
+  cursor: pointer;
+  :hover {
+    background-color: #5D1919;
+    transform: translateY(-3px);
+  }
 `;

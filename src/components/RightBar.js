@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function RightBar({ cartSection, setCartSection }) {
+  const history = useHistory();
+
   return (
     <RightBarContainer>
       {cartSection === 'cart' ? (
@@ -52,6 +55,9 @@ export default function RightBar({ cartSection, setCartSection }) {
           </NextSectionButton>
         </>
       ) : ('')}
+      <BackToHomeButton onClick={() => history.push('/')}>
+        Continue shopping
+      </BackToHomeButton>
     </RightBarContainer>
   );
 }
@@ -61,7 +67,8 @@ const RightBarContainer = styled.div`
   flex-direction: column;
   width: 600px;
   height: fit-content;
-  background-color:#ffffff;
+  background-color:#e5e5e5;
+  border-radius: 10px;
   padding: 25px 17px;
   h1 {
     align-self: center;
@@ -116,6 +123,16 @@ const NextSectionButton = styled.button`
   margin-top: 35px;
   :hover {
       background-color: #5D1919;
+      cursor: pointer;
+      transform: translateY(-3px);
+    }
+`;
+const BackToHomeButton = styled.div`
+  margin-top: 30px;
+  color: #AE3E3E;
+  align-self: center;
+  :hover {
+      color: #5D1919;
       cursor: pointer;
     }
 `;
