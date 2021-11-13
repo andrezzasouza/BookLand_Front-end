@@ -19,14 +19,16 @@ export default function Home() {
         }
         if (res.status === 204) {
           setBooks([]);
-          setMessage("Seems like we have run out of books. We'll restock soon. Please, come back later to find your favorite books again!");
+          setMessage(
+            "Seems like we have run out of books. We'll restock soon. Please, come back later to find your favorite books again!",
+          );
         }
       })
       .catch((err) => {
         const error = err.response.status;
         if (error === 500) {
           setMessage(
-            'Não foi possível acessar a base de dados. Tente novamente.',
+            "It wasn't possible to access the server. Please, try again later!",
           );
         }
       });
