@@ -1,68 +1,29 @@
 import styled from 'styled-components';
 import { IoTrashBin as TrashIcon } from 'react-icons/io5';
 
-export default function CartProducts() {
+export default function CartProducts({ userProducts }) {
   return (
-    <>
-      <CartItemBox>
+    userProducts.map(({
+      id, name, description, price, image, quantity,
+    }) => (
+      <CartItemBox key={id}>
         <BookAndInfo>
-          <ul>
-            oi
-          </ul>
+          <img src={image} alt="" />
           <BookInfo>
-            <h2>Title</h2>
-            <h3>Price</h3>
+            <h2>{name}</h2>
+            <h3>{price}</h3>
             <InfoButtons>
-              <input type="number" min="0" max="100" />
+              <input type="number" min="0" max="100" value={quantity} />
               <TrashIcon className="trash-icon" />
             </InfoButtons>
           </BookInfo>
         </BookAndInfo>
         <details>
           <summary>Description</summary>
-          Description goes here
+          {description}
         </details>
       </CartItemBox>
-      <CartItemBox>
-        <BookAndInfo>
-          <ul>
-            oi
-          </ul>
-          <BookInfo>
-            <h2>Title</h2>
-            <h3>Price</h3>
-            <InfoButtons>
-              <input type="number" min="0" max="100" />
-              <TrashIcon className="trash-icon" />
-            </InfoButtons>
-          </BookInfo>
-        </BookAndInfo>
-        <details>
-          <summary>Description</summary>
-          Description goes here
-        </details>
-      </CartItemBox>
-      <CartItemBox>
-        <BookAndInfo>
-          <ul>
-            oi
-          </ul>
-          <BookInfo>
-            <h2>Title</h2>
-            <h3>Price</h3>
-            <InfoButtons>
-              <input type="number" min="0" max="100" />
-              <TrashIcon className="trash-icon" />
-            </InfoButtons>
-          </BookInfo>
-        </BookAndInfo>
-        <details>
-          <summary>Description</summary>
-          Description goes here
-        </details>
-      </CartItemBox>
-    </>
-  );
+    )));
 }
 
 const CartItemBox = styled.div`
