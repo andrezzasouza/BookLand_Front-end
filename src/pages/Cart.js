@@ -10,12 +10,12 @@ export default function Cart() {
       <TitleBox pageTitle="Shopping Cart" backgroundImg={cartImg} />
       <PageContentContainer>
         <CartContainer>
-          <SectionsAndContent>
-            <Sections>
+          <TopSectionsAndContent>
+            <TopSections>
               <span>Cart</span>
               <span>Delivery</span>
               <span>Payment</span>
-            </Sections>
+            </TopSections>
             <CartItemBox>
               <BookAndInfo>
                 <ul>
@@ -54,29 +54,20 @@ export default function Cart() {
                 Description goes here
               </details>
             </CartItemBox>
-            <CartItemBox>
-              <BookAndInfo>
-                <ul>
-                  oi
-                </ul>
-                <BookInfo>
-                  <h2>Title</h2>
-                  <h3>Price</h3>
-                  <InfoButtons>
-                    <input type="number" min="0" max="100" />
-                    <TrashIcon className="trash-icon" />
-                  </InfoButtons>
-                </BookInfo>
-              </BookAndInfo>
-              <details>
-                <summary>Description</summary>
-                Description goes here
-              </details>
-            </CartItemBox>
-          </SectionsAndContent>
+          </TopSectionsAndContent>
           <RightBar>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            <NextSectionButton>Proceed to checkout</NextSectionButton>
+            <h1>Order Summary</h1>
+            <RightBarProductPrice>
+              <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
+              <b>PRICE</b>
+            </RightBarProductPrice>
+            <RightBarTotalBox>
+              <span>Total</span>
+              <span>VALOR TOTAL</span>
+            </RightBarTotalBox>
+            <NextSectionButton>
+              Proceed to checkout
+            </NextSectionButton>
           </RightBar>
         </CartContainer>
       </PageContentContainer>
@@ -87,24 +78,20 @@ export default function Cart() {
 const CartContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: red;
   width: 100%;
 `;
-const SectionsAndContent = styled.div`
+const TopSectionsAndContent = styled.div`
   width: 100%;
-  background-color: #C4C4C4;
   margin-right: 50px;
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 30px;
 `;
-const Sections = styled.div`
+const TopSections = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
-  background-color: yellow;
   span {  
     width: 150px;
     height: 40px;
@@ -122,6 +109,7 @@ const CartItemBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px;
+  border-bottom: 1px solid #000000;
   summary {
     font-size: 20px;
     font-weight: 700;
@@ -199,7 +187,47 @@ const RightBar = styled.div`
   width: 600px;
   height: fit-content;
   background-color:#C4C4C4;
-  padding: 20px 10px;
+  padding: 25px 17px;
+  h1 {
+    align-self: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 35px;
+  }
+`;
+const RightBarProductPrice = styled.span`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  border-top: 1px solid #a1a2a3;
+  padding-top: 25px;
+  font-size: 18px;
+  p {
+    word-break: break-word;
+    margin-right: 50px;
+    line-height:23px;
+    max-height: 71px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  b {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+const RightBarTotalBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1.5px solid #000000;
+  padding-top: 25px;
+  span {
+    font-size: 22px;
+    font-weight: 700;
+  }
 `;
 const NextSectionButton = styled.button`
   border: none;
@@ -210,6 +238,7 @@ const NextSectionButton = styled.button`
   font-size: 15px;
   font-weight: 700;
   padding: 15px 10px;
+  margin-top: 35px;
   :hover {
       background-color: #5D1919;
       cursor: pointer;

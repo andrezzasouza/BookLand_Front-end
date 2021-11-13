@@ -5,7 +5,7 @@ const PageContentContainer = styled.div`
     padding: 30px 150px;
     display: flex;
     justify-content: center;
-    background-color: green;
+    background-color: #ffffff;
 `;
 
 export default PageContentContainer;
