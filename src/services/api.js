@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:4000';
 
 // const createHeaders = (token) => ({
 //   headers: {
