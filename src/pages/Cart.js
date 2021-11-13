@@ -69,20 +69,21 @@ const TopSections = styled.div`
     border-radius: 5px;
     font-weight: 700;
     font-size: 20px;
+    box-shadow: -3px 5px 15px #515151;
   }
 `;
 const CartSection = styled.span`
-    background-color: ${({ cartSection }) => (cartSection === 'cart' ? '#AE3E3E' : '#ffffff')};
+    background-color: ${({ cartSection }) => (cartSection === 'cart' ? '#AE3E3E' : '#e5e5e5')};
     color: ${({ cartSection }) => (cartSection === 'cart' ? '#ffffff' : '#AE3E3E')};
     border: ${({ cartSection }) => (cartSection === 'cart' ? '#ffffff' : '2px solid #AE3E3E')};
 `;
 const DeliverySection = styled.span`
-    background-color: ${({ cartSection }) => (cartSection === 'delivery' ? '#AE3E3E' : '#ffffff')};
+    background-color: ${({ cartSection }) => (cartSection === 'delivery' ? '#AE3E3E' : '#e5e5e5')};
     color: ${({ cartSection }) => (cartSection === 'delivery' ? '#ffffff' : '#AE3E3E')};
     border: ${({ cartSection }) => (cartSection === 'delivery' ? '#ffffff' : '2px solid #AE3E3E')};
 `;
 const PaymentSection = styled.span`
-    background-color: ${({ cartSection }) => (cartSection === 'payment' ? '#AE3E3E' : '#ffffff')};
+    background-color: ${({ cartSection }) => (cartSection === 'payment' ? '#AE3E3E' : '#e5e5e5')};
     color: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '#AE3E3E')};
     border: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '2px solid #AE3E3E')};
 `;

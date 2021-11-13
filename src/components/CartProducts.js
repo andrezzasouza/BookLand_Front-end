@@ -72,6 +72,8 @@ const CartItemBox = styled.div`
   flex-direction: column;
   padding: 30px;
   border-radius: 10px;
+  border: 2px solid #AE3E3E;
+  box-shadow: -3px 5px 15px #515151;
   summary {
     font-size: 20px;
     font-weight: 700;
