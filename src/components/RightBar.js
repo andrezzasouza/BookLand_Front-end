@@ -1,20 +1,57 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 
-export default function RightBar() {
+export default function RightBar({ cartSection, setCartSection }) {
   return (
     <RightBarContainer>
-      <h1>Order Summary</h1>
-      <RightBarProductPrice>
-        <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
-        <b>PRICE</b>
-      </RightBarProductPrice>
-      <RightBarTotalBox>
-        <span>Total</span>
-        <span>VALOR TOTAL</span>
-      </RightBarTotalBox>
-      <NextSectionButton>
-        Proceed to checkout
-      </NextSectionButton>
+      {cartSection === 'cart' ? (
+        <>
+          <h1>Order Summary</h1>
+          <RightBarProductPrice>
+            <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
+            <b>PRICE</b>
+          </RightBarProductPrice>
+          <RightBarTotalBox>
+            <span>Total</span>
+            <span>VALOR TOTAL</span>
+          </RightBarTotalBox>
+          <NextSectionButton onClick={() => setCartSection('delivery')}>
+            Proceed to checkout
+          </NextSectionButton>
+        </>
+      ) : ('')}
+      {cartSection === 'delivery' ? (
+        <>
+          <h1>Delivery Information</h1>
+          <RightBarProductPrice>
+            <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
+            <b>PRICE</b>
+          </RightBarProductPrice>
+          <RightBarTotalBox>
+            <span>Total</span>
+            <span>VALOR TOTAL</span>
+          </RightBarTotalBox>
+          <NextSectionButton onClick={() => setCartSection('payment')}>
+            Proceed to checkout
+          </NextSectionButton>
+        </>
+      ) : ('')}
+      {cartSection === 'payment' ? (
+        <>
+          <h1>Checkout</h1>
+          <RightBarProductPrice>
+            <p>NOME PRODUTOsdafasdfasdf asdfasdfasdfsadfasdfasdfasdfasdfsdfasdfasdfas</p>
+            <b>PRICE</b>
+          </RightBarProductPrice>
+          <RightBarTotalBox>
+            <span>Total</span>
+            <span>VALOR TOTAL</span>
+          </RightBarTotalBox>
+          <NextSectionButton>
+            Proceed to checkout
+          </NextSectionButton>
+        </>
+      ) : ('')}
     </RightBarContainer>
   );
 }
@@ -24,7 +61,7 @@ const RightBarContainer = styled.div`
   flex-direction: column;
   width: 600px;
   height: fit-content;
-  background-color:#C4C4C4;
+  background-color:#ffffff;
   padding: 25px 17px;
   h1 {
     align-self: center;

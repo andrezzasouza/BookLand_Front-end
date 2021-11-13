@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-constant-condition */
 import styled from 'styled-components';
+import { useState } from 'react';
 import PageContentContainer from '../assets/styles/PageModelStyle.js';
 import TitleBox from '../components/TitleBox.js';
 import cartImg from '../assets/images/cart-background.jpg';
@@ -9,6 +11,8 @@ import CartPayment from '../components/CartPayment';
 import RightBar from '../components/RightBar.js';
 
 export default function Cart() {
+  const [cartSection, setCartSection] = useState('cart');
+
   return (
     <>
       <TitleBox pageTitle="Shopping Cart" backgroundImg={cartImg} />
@@ -16,20 +20,21 @@ export default function Cart() {
         <CartContainer>
           <TopSectionsAndContent>
             <TopSections>
-              <span>Cart</span>
-              <span>Delivery</span>
-              <span>Payment</span>
+              <CartSection cartSection={cartSection} className="section">Cart</CartSection>
+              <DeliverySection cartSection={cartSection} className="section">Delivery</DeliverySection>
+              <PaymentSection cartSection={cartSection} className="section">Payment</PaymentSection>
             </TopSections>
-            {'ok' ? (
+            {cartSection === 'cart' ? (
+              <CartProducts />
+            ) : ('')}
+            {cartSection === 'delivery' ? (
               <CartDelivery />
-            ) : (
-              <>
-                <CartProducts />
-                <CartPayment />
-              </>
-            )}
+            ) : ('')}
+            {cartSection === 'payment' ? (
+              <CartPayment />
+            ) : ('')}
           </TopSectionsAndContent>
-          <RightBar />
+          <RightBar cartSection={cartSection} setCartSection={setCartSection} />
         </CartContainer>
       </PageContentContainer>
     </>
@@ -53,14 +58,28 @@ const TopSections = styled.div`
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
-  span {  
+  .section {
     width: 150px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items:center;
-    background-color: #C4C4C4;
     border-radius: 5px;
     font-weight: 700;
   }
+`;
+const CartSection = styled.span`
+    background-color: ${({ cartSection }) => (cartSection === 'cart' ? '#AE3E3E' : '#ffffff')};
+    color: ${({ cartSection }) => (cartSection === 'cart' ? '#ffffff' : '#AE3E3E')};
+    border: ${({ cartSection }) => (cartSection === 'cart' ? '#ffffff' : '2px solid #AE3E3E')};
+`;
+const DeliverySection = styled.span`
+    background-color: ${({ cartSection }) => (cartSection === 'delivery' ? '#AE3E3E' : '#ffffff')};
+    color: ${({ cartSection }) => (cartSection === 'delivery' ? '#ffffff' : '#AE3E3E')};
+    border: ${({ cartSection }) => (cartSection === 'delivery' ? '#ffffff' : '2px solid #AE3E3E')};
+`;
+const PaymentSection = styled.span`
+    background-color: ${({ cartSection }) => (cartSection === 'payment' ? '#AE3E3E' : '#ffffff')};
+    color: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '#AE3E3E')};
+    border: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '2px solid #AE3E3E')};
 `;
