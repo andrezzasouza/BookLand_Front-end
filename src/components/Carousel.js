@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Carousel } from 'react-responsive-carousel';
+import { CarouselPage } from '../assets/styles/HomeStyle';
 import img1 from '../assets/images/carousel-1.jpg';
 import img2 from '../assets/images/carousel-2.jpg';
 import img3 from '../assets/images/carousel-3.jpg';
@@ -49,10 +49,3 @@ export default () => (
     </CarouselPage>
   </Carousel>
 );
-
-const CarouselPage = styled.div`
-  object-fit: contain;
-  img {
-    vertical-align: middle;
-  }
-`;

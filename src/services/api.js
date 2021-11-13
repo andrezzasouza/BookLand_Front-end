@@ -1,20 +1,7 @@
-/*
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "";
+const API_URL = 'http://localhost:4000';
 
-const createHeaders = (token) => {
-    return {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    };
-}
+const home = () => axios.get(`${API_URL}/home`);
 
-//const sendNewRecord =
-( token, body ) => axios.post(`${API_URL}/records`, body, createHeaders(token));
-
-export {
-
-}
-*/
+export default home;
