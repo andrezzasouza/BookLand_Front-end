@@ -12,10 +12,10 @@ export default function RightBar({
     <RightBarContainer>
       <>
         <h1>Order Summary</h1>
-        {userProducts.map(({ name, price, quantity }) => (
+        {userProducts.map(({ name, price }) => (
           <RightBarProductPrice>
             <p>{name}</p>
-            <b>{`(${quantity}x) ${(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
+            <b>{`(Xx) ${(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
           </RightBarProductPrice>
         ))}
         <RightBarTotalBox>

@@ -4,7 +4,7 @@ import { IoTrashBin as TrashIcon } from 'react-icons/io5';
 export default function CartProducts({ userProducts }) {
   return (
     userProducts.map(({
-      id, name, description, price, image, quantity,
+      id, name, description, price, image,
     }) => (
       <CartItemBox key={id}>
         <BookAndInfo>
@@ -13,7 +13,7 @@ export default function CartProducts({ userProducts }) {
             <h2>{name}</h2>
             <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
             <InfoButtons>
-              <input type="number" min="0" max="100" value={quantity} />
+              <input type="number" min="0" max="100" value={99} />
               <TrashIcon className="trash-icon" />
             </InfoButtons>
           </BookInfo>

@@ -20,13 +20,9 @@ export default function Cart() {
   const [userProducts, setUserProducts] = useState([]);
   const [deliveryInfo, setDeliveryInfo] = useState([]);
   const [paymentInfo, setPaymentInfo] = useState([]);
-  const [totalValue, setTotalValue] = useState(0);
 
-  const calculateTotal = () => {
-    let totalPrice = totalValue;
-    userProducts.forEach((book) => totalPrice += (book.price * book.quantity));
-    setTotalValue(totalPrice);
-  };
+  let totalValue = 0;
+  userProducts.forEach((book) => totalValue += book.price);
 
   const obtainUserCartProducts = (token) => {
     getCartProducts(token)
@@ -56,7 +52,6 @@ export default function Cart() {
     if (cartSection === 'payment') {
       obtainPaymentInfo(token);
     }
-    calculateTotal();
   }, []);
 
   return (
