@@ -1,7 +1,12 @@
+/* eslint-disable no-unused-vars */
 import styled from 'styled-components';
 import { IoTrashBin as TrashIcon } from 'react-icons/io5';
 
 export default function CartProducts({ userProducts }) {
+  const removeFromCart = (bookId) => {
+    // delete requisition
+  };
+
   return (
     userProducts.map(({
       id, name, description, price, image,
@@ -14,7 +19,7 @@ export default function CartProducts({ userProducts }) {
             <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
             <InfoButtons>
               <input type="number" min="0" max="100" value={99} />
-              <TrashIcon className="trash-icon" />
+              <TrashIcon className="trash-icon" onClick={() => removeFromCart(id)} />
             </InfoButtons>
           </BookInfo>
         </BookAndInfo>
