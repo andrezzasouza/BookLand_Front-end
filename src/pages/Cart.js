@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-undef */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-constant-condition */
@@ -18,6 +20,13 @@ export default function Cart() {
   const [userProducts, setUserProducts] = useState([]);
   const [deliveryInfo, setDeliveryInfo] = useState([]);
   const [paymentInfo, setPaymentInfo] = useState([]);
+  const [totalValue, setTotalValue] = useState(0);
+
+  const calculateTotal = () => {
+    let totalPrice = totalValue;
+    userProducts.forEach((book) => totalPrice += (book.price * book.quantity));
+    setTotalValue(totalPrice);
+  };
 
   const obtainUserCartProducts = (token) => {
     getCartProducts(token)
@@ -36,7 +45,7 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('userSession'));
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
 
     if (cartSection === 'cart') {
       obtainUserCartProducts(token);
@@ -47,6 +56,7 @@ export default function Cart() {
     if (cartSection === 'payment') {
       obtainPaymentInfo(token);
     }
+    calculateTotal();
   }, []);
 
   return (
@@ -71,7 +81,12 @@ export default function Cart() {
               <CartPayment />
             ) : ('')}
           </TopSectionsAndContent>
-          <RightBar cartSection={cartSection} setCartSection={setCartSection} />
+          <RightBar
+            cartSection={cartSection}
+            setCartSection={setCartSection}
+            userProducts={userProducts}
+            totalValue={totalValue}
+          />
         </CartContainer>
       </PageContentContainer>
     </>

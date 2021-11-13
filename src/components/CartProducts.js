@@ -11,7 +11,7 @@ export default function CartProducts({ userProducts }) {
           <img src={image} alt="" />
           <BookInfo>
             <h2>{name}</h2>
-            <h3>{price}</h3>
+            <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
             <InfoButtons>
               <input type="number" min="0" max="100" value={quantity} />
               <TrashIcon className="trash-icon" />
@@ -32,6 +32,7 @@ const CartItemBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px;
+  padding-bottom: 18px;
   border-radius: 10px;
   border: 2px solid #AE3E3E;
   box-shadow: -3px 5px 15px #515151;
@@ -43,6 +44,7 @@ const CartItemBox = styled.div`
   }
   details {
     font-size: 18px;
+    line-height:21px;
   }
 `;
 const BookAndInfo = styled.div`
@@ -53,12 +55,7 @@ const BookAndInfo = styled.div`
   border-bottom: 1px solid #000000;
   padding-bottom: 20px;
   img {
-    width: 185px;
-  }
-  ul {
-    width: 350px;
-    height: 200px;
-    background-color: #9b9393;
+    width: 110px;
   }
 `;
 const BookInfo = styled.div`
@@ -68,11 +65,11 @@ const BookInfo = styled.div`
   gap: 9px;
   width: 100%;
   h2 {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
   }
   h3 {
-    font-size: 35px;
+    font-size: 28px;
   }
 `;
 const InfoButtons = styled.span`
@@ -80,7 +77,7 @@ const InfoButtons = styled.span`
   justify-content: space-between;
   gap: 20px;
   input {
-    width: 55px;
+    width: 90px;
     height: 40px;
     border: none;
     background-color: #AE3E3E;
@@ -89,7 +86,7 @@ const InfoButtons = styled.span`
     font-size: 25px;
     outline: none;
     border-radius: 5px;
-    padding-left: 13px;
+    text-align: center;
   }
   input[type=number]::-webkit-inner-spin-button {
     opacity: 1;
@@ -97,7 +94,6 @@ const InfoButtons = styled.span`
     height: 50px;
     margin-right: -2px;
     border-radius: 10px;
-
   }
   .trash-icon {
     font-size: 40px;

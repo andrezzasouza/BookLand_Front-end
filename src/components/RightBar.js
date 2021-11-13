@@ -1,21 +1,26 @@
+/* eslint-disable no-console */
+/* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function RightBar({ cartSection, setCartSection }) {
+export default function RightBar({
+  cartSection, setCartSection, userProducts, totalValue,
+}) {
   const history = useHistory();
-
   return (
     <RightBarContainer>
       <>
         <h1>Order Summary</h1>
-        <RightBarProductPrice>
-          <p>NOME PRODUTOsdafasdfasdf fasdfnfskaddfasdfasdfsdfasdfasdfas</p>
-          <b>1x PRICEsdafasd</b>
-        </RightBarProductPrice>
+        {userProducts.map(({ name, price, quantity }) => (
+          <RightBarProductPrice>
+            <p>{name}</p>
+            <b>{`(${quantity}x) ${(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
+          </RightBarProductPrice>
+        ))}
         <RightBarTotalBox>
           <span>Total</span>
-          <span>VALOR TOTAL</span>
+          <span>{(totalValue / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
         </RightBarTotalBox>
         {cartSection !== 'cart' ? (
           <>
@@ -74,11 +79,15 @@ const RightBarProductPrice = styled.span`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
-  border-top: 1px solid #000000;
   padding-top: 25px;
   font-size: 18px;
   line-height:23px;
+  :first-of-type {
+    border-top: 1px solid #000000;
+  }
+  :last-of-type {
+    margin-bottom: 25px;
+  }
   p {
     word-break: break-word;
     margin-right: 40px;
