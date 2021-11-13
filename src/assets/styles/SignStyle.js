@@ -26,6 +26,9 @@ const StyledLogo = styled.div`
   color: #ffffff;
   gap: 10px;
   margin-bottom: 40px;
+  a {
+    color: inherit;
+  }
   h1 {
     font-weight: 700;
     font-size: 60px;
