@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     h3,
     h4,
     h5,
-    h3,
+    h6,
     p,
     blockquote,
     pre,
@@ -132,6 +132,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body::-webkit-scrollbar {
         width: 0.5em;
+        height: 0.5em;
     }
     body::-webkit-scrollbar-track {
         box-shadow: inset 0 0 6px rgb(29, 28, 38);

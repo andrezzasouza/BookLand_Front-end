@@ -26,7 +26,7 @@ import {
 import storeImg1 from '../assets/images/store-img1.jpg';
 import storeImg3 from '../assets/images/store-img3.jpg';
 import logo from '../assets/images/bookland.png';
-import { aboutStore1, aboutStore2 } from '../assets/texts/FooterText';
+import { aboutStore1, aboutStore2 } from '../assets/others/FooterText';
 
 export default function Footer() {
   const [showModal, setShowModal] = useState(false);
