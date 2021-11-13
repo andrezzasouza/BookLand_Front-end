@@ -8,8 +8,6 @@ const FooterContainer = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  margin: 400px 0 0;
-  // delete this margin after the header is done
   h3 {
     font-family: 'Righteous', cursive;
     font-size: 28px;

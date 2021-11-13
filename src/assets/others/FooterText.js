@@ -1,0 +1,5 @@
+const aboutStore1 = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia cum itaque sed deleniti! Explicabo maxime providentiste numquam esse! Rem distinctio, natus dicta tempora earum dolore ad et. Esse, harum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia cum itaque sed deleniti! Explicabo maxime provident iste numquam esse! Rem distinctio, natus dicta tempora earum dolore ad et. Esse, harum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia cum itaque sed deleniti! Explicabo maxime provident iste numquam esse! Rem distinctio, natus dicta tempora earum dolore ad et. Esse, harum.';
+
+const aboutStore2 = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia cum itaque sed deleniti! Explicabo maxime provident iste numquam esse! Rem distinctio, natus dicta tempora earum dolore ad et. Esse, harum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia cum itaque sed deleniti! Explicabo maxime provident iste numquam esse! Rem distinctio, natus dicta tempora earum dolore ad et. Esse, harum.';
+
+export { aboutStore1, aboutStore2 };
