@@ -6,11 +6,11 @@ import { deleteCartProduct } from '../services/api';
 
 export default function CartProducts({ userProducts }) {
   const { token } = JSON.parse(localStorage.getItem('userSession'));
-
-  console.log(token);
   const removeFromCart = (bookId) => {
     const productBody = {
-      bookId,
+      data: {
+        bookId,
+      },
     };
     deleteCartProduct(productBody, token);
   };
