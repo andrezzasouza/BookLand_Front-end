@@ -7,12 +7,8 @@ import { deleteCartProduct } from '../services/api';
 export default function CartProducts({ userProducts }) {
   const { token } = JSON.parse(localStorage.getItem('userSession'));
   const removeFromCart = (bookId) => {
-    const productBody = {
-      data: {
-        bookId,
-      },
-    };
-    deleteCartProduct(productBody, token);
+    console.log(bookId, token);
+    deleteCartProduct({ bookId }, token);
   };
 
   return (
