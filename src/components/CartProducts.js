@@ -9,7 +9,8 @@ import CartContext from '../store/cartContext';
 export default function CartProducts() {
   const { userProducts, setUserProducts } = useContext(CartContext);
 
-  const obtainUserCartProducts = (token) => {
+  const obtainUserCartProducts = () => {
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
     getCartProducts(token)
       .then((res) => {
         setUserProducts(res.data);
@@ -19,21 +20,21 @@ export default function CartProducts() {
       });
   };
 
-  console.log(userProducts);
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
-    obtainUserCartProducts(token);
+    obtainUserCartProducts();
   }, []);
 
-  // const removeFromCart = (bookId) => {
-  //   deleteCartProduct({ bookId }, token)
-  //     .then((res) => {
-  //       setUserProducts();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response);
-  //     });
-  // };
+  const removeFromCart = (bookId) => {
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    deleteCartProduct({ bookId }, token)
+      .then((res) => {
+        const newProducts = userProducts.filter((product) => product.id !== bookId);
+        setUserProducts(newProducts);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
 
   if (userProducts.length === 0) {
     return (<>You don`t have any books in your cart!</>);
@@ -51,7 +52,7 @@ export default function CartProducts() {
             <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
             <InfoButtons>
               <input type="number" min="0" max="100" value={99} />
-              <TrashIcon className="trash-icon" onClick={() => (id)} />
+              <TrashIcon className="trash-icon" onClick={() => removeFromCart(id)} />
             </InfoButtons>
           </BookInfo>
         </BookAndInfo>

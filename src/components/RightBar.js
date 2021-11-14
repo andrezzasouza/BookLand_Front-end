@@ -8,13 +8,14 @@ import CartContext from '../store/cartContext';
 
 export default function RightBar({ cartSection, setCartSection }) {
   const history = useHistory();
-  const totalValue = 0;
   const { userProducts } = useContext(CartContext);
-  // userProducts.forEach((book) => totalValue += book.price);
 
   if (userProducts.length === 0) {
     return (<></>);
   }
+
+  let totalValue = 0;
+  userProducts.forEach((book) => totalValue += book.price);
 
   return (
     <RightBarContainer>
