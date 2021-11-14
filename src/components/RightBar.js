@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import CartContext from '../store/cartContext';
@@ -14,9 +14,11 @@ export default function RightBar({ cartSection, setCartSection }) {
     return (<></>);
   }
 
-  useEffect(() => {
-    console.log('oi');
-  }, [userProducts]);
+  const goToPaymentSection = () => {
+    if (userAdress) {
+      setCartSection('payment');
+    }
+  };
 
   let totalValue = 0;
   userProducts.forEach((book) => totalValue += (book.price * book.cartQuantity));
@@ -40,7 +42,7 @@ export default function RightBar({ cartSection, setCartSection }) {
         {cartSection !== 'cart' ? (
           <>
             <SubTitle>Adress</SubTitle>
-            <SubInfo>{userAdress}</SubInfo>
+            <SubInfo>{userAdress !== '' ? `${userAdress.state}, ${userAdress.city}, ${userAdress.district}, ${userAdress.street}, ${userAdress.CEP}, ${userAdress.complement}` : 'Tell us your delivery info!'}</SubInfo>
           </>
         ) : ('')}
         {cartSection === 'payment' ? (
@@ -55,7 +57,7 @@ export default function RightBar({ cartSection, setCartSection }) {
           </NextSectionButton>
         ) : ('')}
         {cartSection === 'delivery' ? (
-          <NextSectionButton onClick={() => setCartSection('payment')}>
+          <NextSectionButton onClick={() => goToPaymentSection()}>
             Proceed to checkout section
           </NextSectionButton>
         ) : ('')}
@@ -158,6 +160,7 @@ const SubTitle = styled.h2`
   font-size: 20px;
   font-weight: 700;
   margin: 25px 0px 5px;
+  word-break: break-word;
 `;
 const SubInfo = styled.h3`
   font-size: 19px;

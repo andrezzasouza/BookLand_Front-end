@@ -33,7 +33,6 @@ export default function CartDelivery() {
     event.preventDefault();
     setLoading(true);
     setDisableEdit(true);
-    setUserAdress(`${state}, ${city}, ${district}, ${street}, ${CEP}, ${complement}`);
     const adressBody = {
       state,
       city,
@@ -42,13 +41,13 @@ export default function CartDelivery() {
       CEP,
       complement,
     };
+    setUserAdress(adressBody);
     postDeliveryInfo(adressBody)
       .then(() => {
         setLoading(false);
-        setUserAdress(`${state}, ${city}, ${district}, ${street}, ${CEP}, ${complement}`);
+        setUserAdress(adressBody);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         setLoading(false);
       });
   }
