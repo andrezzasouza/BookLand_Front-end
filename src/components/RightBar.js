@@ -8,7 +8,7 @@ import CartContext from '../store/cartContext';
 
 export default function RightBar({ cartSection, setCartSection }) {
   const history = useHistory();
-  const { userProducts } = useContext(CartContext);
+  const { userProducts, userAdress } = useContext(CartContext);
 
   if (userProducts.length === 0) {
     return (<></>);
@@ -40,7 +40,7 @@ export default function RightBar({ cartSection, setCartSection }) {
         {cartSection !== 'cart' ? (
           <>
             <SubTitle>Adress</SubTitle>
-            <SubInfo>Endereço aqiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiii</SubInfo>
+            <SubInfo>{userAdress}</SubInfo>
           </>
         ) : ('')}
         {cartSection === 'payment' ? (

@@ -10,10 +10,11 @@ import TransitionStyle from './assets/styles/TransitionStyle';
 export default function App() {
   const [alertMessage, setAlertMessage] = useState('');
   const [userProducts, setUserProducts] = useState([]);
+  const [userAdress, setUserAdress] = useState('');
 
   return (
     <InputContext.Provider value={{ alertMessage, setAlertMessage }}>
-      <CartContext.Provider value={{ userProducts, setUserProducts }}>
+      <CartContext.Provider value={{ userProducts, setUserProducts, userAdress, setUserAdress }}>
         <Router>
           <GlobalStyle />
           <TransitionStyle />

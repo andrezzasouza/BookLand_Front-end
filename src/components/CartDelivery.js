@@ -1,7 +1,10 @@
+/* eslint-disable no-console */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 import styled from 'styled-components';
+import { useState, useContext } from 'react';
+import CartContext from '../store/cartContext';
 import {
   StyledForm,
   StyledInput,
@@ -13,65 +16,116 @@ import {
   PencilIcon,
   Legend,
 } from '../assets/styles/SaveEditButtons';
+import { postDeliveryInfo } from '../services/api';
 
 export default function CartDelivery() {
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [district, setDistrict] = useState('');
+  const [street, setStreet] = useState('');
+  const [CEP, setCEP] = useState('');
+  const [complement, setComplement] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [disableEdit, setDisableEdit] = useState(true);
+  const { setUserAdress } = useContext(CartContext);
+
+  function addAdressRequest(event) {
+    event.preventDefault();
+    setLoading(true);
+    setDisableEdit(true);
+    setUserAdress(`${state}, ${city}, ${district}, ${street}, ${CEP}, ${complement}`);
+    const adressBody = {
+      state,
+      city,
+      district,
+      street,
+      CEP,
+      complement,
+    };
+    postDeliveryInfo(adressBody)
+      .then(() => {
+        setLoading(false);
+        setUserAdress(`${state}, ${city}, ${district}, ${street}, ${CEP}, ${complement}`);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }
+
   return (
     <DeliveryBox>
       <StyledForm
-        onSubmit={() => {}}
+        onSubmit={(e) => {
+          setLoading(true);
+          addAdressRequest(e);
+        }}
       >
         <StyledInput
+          value={state}
           placeholder="State*"
           type="text"
-          onChange={() => {}}
+          onChange={(e) => setState(e.target.value)}
           minLength="1"
-          maxLength="30"
-          required
-          disabled={false}
-        />
-        <StyledInput
-          placeholder="City*"
-          type="text"
-          onChange={() => {}}
-          maxLength="11"
-          minLength="11"
-          required
-          disabled={false}
-        />
-        <StyledInput
-          placeholder="District*"
-          type="email"
-          onChange={() => {}}
           maxLength="50"
           required
-          disabled={false}
+          disabled={disableEdit}
         />
         <StyledInput
+          value={city}
+          placeholder="City*"
+          type="text"
+          onChange={(e) => setCity(e.target.value)}
+          minLength="1"
+          maxLength="50"
+          required
+          disabled={disableEdit}
+        />
+        <StyledInput
+          value={district}
+          placeholder="District*"
+          type="text"
+          onChange={(e) => setDistrict(e.target.value)}
+          minLength="1"
+          maxLength="50"
+          required
+          disabled={disableEdit}
+        />
+        <StyledInput
+          value={street}
           placeholder="Street*"
-          type="password"
-          onChange={() => {}}
+          type="text"
+          onChange={(e) => setStreet(e.target.value)}
+          minLength="1"
+          maxLength="50"
           required
-          disabled={false}
+          disabled={disableEdit}
         />
         <StyledInput
+          value={CEP}
           placeholder="CEP*"
-          type="password"
-          onChange={() => {}}
+          type="text"
+          onChange={(e) => setCEP(e.target.value)}
+          minLength="1"
+          maxLength="50"
           required
-          disabled={false}
+          disabled={disableEdit}
         />
         <StyledInput
+          value={complement}
           placeholder="Complement"
-          type="password"
-          onChange={() => {}}
-          disabled={false}
+          type="text"
+          onChange={(e) => setComplement(e.target.value)}
+          minLength="1"
+          maxLength="50"
+          disabled={disableEdit}
         />
-        <SaveInfoButton type="submit" disabled={false}>
-          {false ? 'Loading...' : 'Save'}
+        <SaveInfoButton type="submit" loading={loading} disabled={disableEdit}>
+          {loading ? 'Loading...' : 'Save'}
           <CheckMarkIcon />
         </SaveInfoButton>
       </StyledForm>
-      <EditInfoButton>
+      <EditInfoButton onClick={() => setDisableEdit(!disableEdit)}>
         Edit
         <PencilIcon />
       </EditInfoButton>
