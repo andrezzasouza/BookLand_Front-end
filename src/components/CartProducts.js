@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect } from 'react';
@@ -13,7 +14,11 @@ export default function CartProducts() {
     const { token } = JSON.parse(localStorage.getItem('userSession'));
     getCartProducts(token)
       .then((res) => {
-        setUserProducts(res.data);
+        const updateUserProduct = res.data;
+        updateUserProduct.forEach((product) => {
+          product.cartQuantity = 1;
+        });
+        setUserProducts(updateUserProduct);
       })
       .catch((err) => {
         console.log(err.response);
@@ -27,7 +32,7 @@ export default function CartProducts() {
   const removeFromCart = (bookId) => {
     const { token } = JSON.parse(localStorage.getItem('userSession'));
     deleteCartProduct({ bookId }, token)
-      .then((res) => {
+      .then(() => {
         const newProducts = userProducts.filter((product) => product.id !== bookId);
         setUserProducts(newProducts);
       })
@@ -36,13 +41,23 @@ export default function CartProducts() {
       });
   };
 
+  const changeBookQuantity = (e, id) => {
+    const updateUserProduct = [...userProducts];
+    updateUserProduct.forEach((product) => {
+      if (product.id === id) {
+        product.cartQuantity = e.target.value;
+      }
+    });
+    setUserProducts(updateUserProduct);
+  };
+
   if (userProducts.length === 0) {
     return (<>You don`t have any books in your cart!</>);
   }
 
   return (
     userProducts.map(({
-      id, name, description, price, image,
+      id, name, description, price, image, cartQuantity,
     }) => (
       <CartItemBox key={id}>
         <BookAndInfo>
@@ -51,7 +66,7 @@ export default function CartProducts() {
             <h2>{name}</h2>
             <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
             <InfoButtons>
-              <input type="number" min="0" max="100" value={99} />
+              <input type="number" min="1" max="100" value={cartQuantity} onChange={(e) => changeBookQuantity(e, id)} />
               <TrashIcon className="trash-icon" onClick={() => removeFromCart(id)} />
             </InfoButtons>
           </BookInfo>

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import CartContext from '../store/cartContext';
@@ -14,17 +14,23 @@ export default function RightBar({ cartSection, setCartSection }) {
     return (<></>);
   }
 
+  useEffect(() => {
+    console.log('oi');
+  }, [userProducts]);
+
   let totalValue = 0;
-  userProducts.forEach((book) => totalValue += book.price);
+  userProducts.forEach((book) => totalValue += (book.price * book.cartQuantity));
 
   return (
     <RightBarContainer>
       <>
         <h1>Order Summary</h1>
-        {userProducts.map(({ id, name, price }) => (
+        {userProducts.map(({
+          id, name, price, cartQuantity,
+        }) => (
           <RightBarProductPrice key={id}>
             <p>{name}</p>
-            <b>{`(Xx) ${(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
+            <b>{`(${cartQuantity}x) ${((price / 100) * cartQuantity).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
           </RightBarProductPrice>
         ))}
         <RightBarTotalBox>
