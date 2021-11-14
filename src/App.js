@@ -11,10 +11,14 @@ export default function App() {
   const [alertMessage, setAlertMessage] = useState('');
   const [userProducts, setUserProducts] = useState([]);
   const [userAdress, setUserAdress] = useState('');
+  const [userPayment, setUserPayment] = useState('');
 
   return (
     <InputContext.Provider value={{ alertMessage, setAlertMessage }}>
-      <CartContext.Provider value={{ userProducts, setUserProducts, userAdress, setUserAdress }}>
+      <CartContext.Provider value={{
+        userProducts, setUserProducts, userAdress, setUserAdress, userPayment, setUserPayment,
+      }}
+      >
         <Router>
           <GlobalStyle />
           <TransitionStyle />

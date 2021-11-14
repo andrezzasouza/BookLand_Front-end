@@ -1,5 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable no-constant-condition */
 import styled from 'styled-components';
+import { useState, useContext } from 'react';
+import CartContext from '../store/cartContext';
 import {
   StyledForm,
   StyledInput,
@@ -11,59 +14,105 @@ import {
   PencilIcon,
   Legend,
 } from '../assets/styles/SaveEditButtons';
+import { postPaymentInfo } from '../services/api';
 
 export default function CartPayment() {
+  const [network, setNetwork] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [CVV, setCVV] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [disableEdit, setDisableEdit] = useState(true);
+  const { setUserPayment } = useContext(CartContext);
+
+  function addPaymentRequest(event) {
+    event.preventDefault();
+    setLoading(true);
+    setDisableEdit(true);
+    const paymentBody = {
+      network,
+      cardName,
+      cardNumber,
+      expirationDate,
+      CVV,
+    };
+    postPaymentInfo(paymentBody)
+      .then(() => {
+        setLoading(false);
+        setUserPayment(paymentBody);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }
+
   return (
     <PaymentBox>
       <StyledForm
-        onSubmit={() => {}}
+        onSubmit={(e) => {
+          setLoading(true);
+          addPaymentRequest(e);
+        }}
       >
+        <legend>Network</legend>
         <StyledInput
+          value={network}
           placeholder="Network*"
-          type="password"
-          onChange={() => {}}
-          required
-          disabled={false}
-        />
-        <StyledInput
-          placeholder="Card name*"
           type="text"
-          onChange={() => {}}
+          onChange={(e) => setNetwork(e.target.value)}
           minLength="1"
-          maxLength="30"
-          required
-          disabled={false}
-        />
-        <StyledInput
-          placeholder="Card number*"
-          type="text"
-          onChange={() => {}}
-          maxLength="11"
-          minLength="11"
-          required
-          disabled={false}
-        />
-        <StyledInput
-          placeholder="Expiration Date*"
-          type="email"
-          onChange={() => {}}
           maxLength="50"
           required
-          disabled={false}
+          disabled={disableEdit}
         />
+        <legend>Card name</legend>
         <StyledInput
+          value={cardName}
+          placeholder="Card name*"
+          type="text"
+          onChange={(e) => setCardName(e.target.value)}
+          minLength="1"
+          maxLength="50"
+          required
+          disabled={disableEdit}
+        />
+        <legend>Card number</legend>
+        <StyledInput
+          value={cardNumber}
+          placeholder="Card number*"
+          type="text"
+          onChange={(e) => setCardNumber(e.target.value)}
+          size={16}
+          required
+          disabled={disableEdit}
+        />
+        <legend>Expiration Date</legend>
+        <StyledInput
+          value={expirationDate}
+          placeholder="Expiration Date*"
+          type="date"
+          onChange={(e) => setExpirationDate(e.target.value)}
+          required
+          disabled={disableEdit}
+        />
+        <legend>CVV</legend>
+        <StyledInput
+          value={CVV}
           placeholder="CVV*"
           type="password"
-          onChange={() => {}}
+          onChange={(e) => setCVV(e.target.value)}
+          minLength="3"
+          maxLength="3"
           required
-          disabled={false}
+          disabled={disableEdit}
         />
-        <SaveInfoButton type="submit" disabled={false}>
-          {false ? 'Loading...' : 'Save'}
+        <SaveInfoButton type="submit" loading={loading} disabled={disableEdit}>
+          {loading ? 'Loading...' : 'Save'}
           <CheckMarkIcon />
         </SaveInfoButton>
       </StyledForm>
-      <EditInfoButton>
+      <EditInfoButton onClick={() => setDisableEdit(!disableEdit)}>
         Edit
         <PencilIcon />
       </EditInfoButton>

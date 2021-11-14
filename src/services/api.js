@@ -14,8 +14,8 @@ const home = () => axios.get(`${API_URL}/home`);
 const getCartProducts = (token) => axios.get(`${API_URL}/cart-products`, createHeaders(token));
 const deleteCartProduct = (body, token) => axios.post(`${API_URL}/cart-products`, body, createHeaders(token));
 const postDeliveryInfo = (body, token) => axios.post(`${API_URL}/delivery`, body, createHeaders(token));
-// const getPaymentInfo = (token) => axios.get(`${API_URL}/payment`, createHeaders(token));
+const postPaymentInfo = (body, token) => axios.get(`${API_URL}/payment`, body, createHeaders(token));
 
 export {
-  signUp, signIn, getCartProducts, home, deleteCartProduct, postDeliveryInfo,
+  signUp, signIn, getCartProducts, home, deleteCartProduct, postDeliveryInfo, postPaymentInfo,
 };

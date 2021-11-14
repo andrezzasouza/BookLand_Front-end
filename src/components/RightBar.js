@@ -8,7 +8,7 @@ import CartContext from '../store/cartContext';
 
 export default function RightBar({ cartSection, setCartSection }) {
   const history = useHistory();
-  const { userProducts, userAdress } = useContext(CartContext);
+  const { userProducts, userAdress, userPayment } = useContext(CartContext);
 
   if (userProducts.length === 0) {
     return (<></>);
@@ -17,6 +17,12 @@ export default function RightBar({ cartSection, setCartSection }) {
   const goToPaymentSection = () => {
     if (userAdress) {
       setCartSection('payment');
+    }
+  };
+
+  const checkout = () => {
+    if (userPayment) {
+      console.log('compra finalizada');
     }
   };
 
@@ -42,13 +48,13 @@ export default function RightBar({ cartSection, setCartSection }) {
         {cartSection !== 'cart' ? (
           <>
             <SubTitle>Adress</SubTitle>
-            <SubInfo>{userAdress !== '' ? `${userAdress.state}, ${userAdress.city}, ${userAdress.district}, ${userAdress.street}, ${userAdress.CEP}, ${userAdress.complement}` : 'Tell us your delivery info!'}</SubInfo>
+            <SubInfo>{userAdress !== '' ? `${userAdress.state}, ${userAdress.city}, ${userAdress.district}, ${userAdress.street}, ${userAdress.CEP}, ${userAdress.complement}` : 'Please insert your delivery info!'}</SubInfo>
           </>
         ) : ('')}
         {cartSection === 'payment' ? (
           <>
             <SubTitle>Payment</SubTitle>
-            <SubInfo>Pagamento aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiiii</SubInfo>
+            <SubInfo>{userPayment !== '' ? `Network: ${userPayment.network}\n Card name: ${userPayment.cardName}\n Card number: ${userPayment.cardNumber}\n Exp. Date: ${userPayment.expirationDate}` : 'Please insert your payment info!'}</SubInfo>
           </>
         ) : ('')}
         {cartSection === 'cart' ? (
@@ -62,7 +68,7 @@ export default function RightBar({ cartSection, setCartSection }) {
           </NextSectionButton>
         ) : ('')}
         {cartSection === 'payment' ? (
-          <NextSectionButton>
+          <NextSectionButton onClick={() => checkout()}>
             Checkout
           </NextSectionButton>
         ) : ('')}
@@ -167,4 +173,5 @@ const SubInfo = styled.h3`
   line-height:25px;
   padding-bottom: 20px;
   border-bottom: 1px solid #a1a2a3;
+  white-space: pre-line;
 `;
