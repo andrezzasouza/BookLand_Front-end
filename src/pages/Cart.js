@@ -5,7 +5,7 @@
 /* eslint-disable no-constant-condition */
 import { IoCartSharp } from 'react-icons/io5';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PageContentContainer from '../assets/styles/PageModelStyle.js';
 import TitleBox from '../components/TitleBox.js';
 import cartImg from '../assets/images/solid-color-image.jpeg';
@@ -13,46 +13,9 @@ import CartProducts from '../components/CartProducts';
 import CartDelivery from '../components/CartDelivery';
 import CartPayment from '../components/CartPayment';
 import RightBar from '../components/RightBar.js';
-import { getCartProducts, getDeliveryInfo, getPaymentInfo } from '../services/api';
 
 export default function Cart() {
   const [cartSection, setCartSection] = useState('cart');
-  const [userProducts, setUserProducts] = useState([]);
-  const [deliveryInfo, setDeliveryInfo] = useState([]);
-  const [paymentInfo, setPaymentInfo] = useState([]);
-
-  let totalValue = 0;
-  userProducts.forEach((book) => totalValue += book.price);
-
-  const obtainUserCartProducts = (token) => {
-    getCartProducts(token)
-      .then((res) => {
-        setUserProducts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const obtainDeliveryInfo = (token) => {
-    getDeliveryInfo(token);
-  };
-  const obtainPaymentInfo = (token) => {
-    getPaymentInfo(token);
-  };
-
-  useEffect(() => {
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
-
-    if (cartSection === 'cart') {
-      obtainUserCartProducts(token);
-    }
-    if (cartSection === 'delivery') {
-      obtainDeliveryInfo(token);
-    }
-    if (cartSection === 'payment') {
-      obtainPaymentInfo(token);
-    }
-  }, []);
 
   return (
     <>
@@ -67,7 +30,7 @@ export default function Cart() {
               <PaymentSection cartSection={cartSection} className="section">Payment</PaymentSection>
             </TopSections>
             {cartSection === 'cart' ? (
-              <CartProducts userProducts={userProducts} />
+              <CartProducts />
             ) : ('')}
             {cartSection === 'delivery' ? (
               <CartDelivery />
@@ -79,8 +42,6 @@ export default function Cart() {
           <RightBar
             cartSection={cartSection}
             setCartSection={setCartSection}
-            userProducts={userProducts}
-            totalValue={totalValue}
           />
         </CartContainer>
       </PageContentContainer>

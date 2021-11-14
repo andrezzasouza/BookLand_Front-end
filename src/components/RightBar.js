@@ -1,19 +1,27 @@
 /* eslint-disable no-console */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import CartContext from '../store/cartContext';
 
-export default function RightBar({
-  cartSection, setCartSection, userProducts, totalValue,
-}) {
+export default function RightBar({ cartSection, setCartSection }) {
   const history = useHistory();
+  const totalValue = 0;
+  const { userProducts } = useContext(CartContext);
+  // userProducts.forEach((book) => totalValue += book.price);
+
+  if (userProducts.length === 0) {
+    return (<></>);
+  }
+
   return (
     <RightBarContainer>
       <>
         <h1>Order Summary</h1>
-        {userProducts.map(({ name, price }) => (
-          <RightBarProductPrice>
+        {userProducts.map(({ id, name, price }) => (
+          <RightBarProductPrice key={id}>
             <p>{name}</p>
             <b>{`(Xx) ${(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
           </RightBarProductPrice>

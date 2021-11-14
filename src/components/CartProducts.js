@@ -1,15 +1,43 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { IoTrashBin as TrashIcon } from 'react-icons/io5';
-import { deleteCartProduct } from '../services/api';
+import { getCartProducts, deleteCartProduct } from '../services/api';
+import CartContext from '../store/cartContext';
 
-export default function CartProducts({ userProducts }) {
-  const { token } = JSON.parse(localStorage.getItem('userSession'));
-  const removeFromCart = (bookId) => {
-    console.log(bookId, token);
-    deleteCartProduct({ bookId }, token);
+export default function CartProducts() {
+  const { userProducts, setUserProducts } = useContext(CartContext);
+
+  const obtainUserCartProducts = (token) => {
+    getCartProducts(token)
+      .then((res) => {
+        setUserProducts(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
+
+  console.log(userProducts);
+  useEffect(() => {
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    obtainUserCartProducts(token);
+  }, []);
+
+  // const removeFromCart = (bookId) => {
+  //   deleteCartProduct({ bookId }, token)
+  //     .then((res) => {
+  //       setUserProducts();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response);
+  //     });
+  // };
+
+  if (userProducts.length === 0) {
+    return (<>You don`t have any books in your cart!</>);
+  }
 
   return (
     userProducts.map(({
@@ -23,7 +51,7 @@ export default function CartProducts({ userProducts }) {
             <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
             <InfoButtons>
               <input type="number" min="0" max="100" value={99} />
-              <TrashIcon className="trash-icon" onClick={() => removeFromCart(id)} />
+              <TrashIcon className="trash-icon" onClick={() => (id)} />
             </InfoButtons>
           </BookInfo>
         </BookAndInfo>
