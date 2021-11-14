@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
-import { useContext, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import CartContext from '../store/cartContext';
