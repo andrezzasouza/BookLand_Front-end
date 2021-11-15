@@ -28,6 +28,7 @@ export default function CartPayment() {
 
   function addPaymentRequest(event) {
     event.preventDefault();
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
     setLoading(true);
     setDisableEdit(true);
     const paymentBody = {
@@ -37,7 +38,7 @@ export default function CartPayment() {
       expirationDate,
       CVV,
     };
-    postPaymentInfo(paymentBody)
+    postPaymentInfo(paymentBody, token)
       .then(() => {
         setLoading(false);
         setUserPayment(paymentBody);
@@ -90,8 +91,8 @@ export default function CartPayment() {
         <legend>Expiration Date</legend>
         <StyledInput
           value={expirationDate}
-          placeholder="Expiration Date*"
-          type="date"
+          placeholder="Expiration Date* (format: MM/YY)"
+          type="text"
           onChange={(e) => setExpirationDate(e.target.value)}
           required
           disabled={disableEdit}

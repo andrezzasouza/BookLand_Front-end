@@ -31,6 +31,7 @@ export default function CartDelivery() {
 
   function addAdressRequest(event) {
     event.preventDefault();
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
     setLoading(true);
     setDisableEdit(true);
     const adressBody = {
@@ -41,7 +42,7 @@ export default function CartDelivery() {
       CEP,
       complement,
     };
-    postDeliveryInfo(adressBody)
+    postDeliveryInfo(adressBody, token)
       .then(() => {
         setLoading(false);
         setUserAdress(adressBody);
