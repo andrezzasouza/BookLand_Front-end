@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-console */
 /* eslint-disable no-constant-condition */
 import styled from 'styled-components';
@@ -25,6 +26,8 @@ export default function CartPayment() {
   const [loading, setLoading] = useState(false);
   const [disableEdit, setDisableEdit] = useState(true);
   const { setUserPayment } = useContext(CartContext);
+  const stringWithOnlyNumbers = '^[0-9]+$';
+  const expirationDatePattern = '^(0[1-9]|1[0-2])\/?([0-9]{2})$';
 
   function addPaymentRequest(event) {
     event.preventDefault();
@@ -84,16 +87,21 @@ export default function CartPayment() {
           placeholder="Card number*"
           type="text"
           onChange={(e) => setCardNumber(e.target.value)}
-          size={16}
+          minLength="16"
+          maxLength="16"
+          pattern={stringWithOnlyNumbers}
           required
           disabled={disableEdit}
         />
-        <legend>Expiration Date</legend>
+        <legend>Expiration Date (MM/YY)</legend>
         <StyledInput
           value={expirationDate}
           placeholder="Expiration Date* (format: MM/YY)"
           type="text"
           onChange={(e) => setExpirationDate(e.target.value)}
+          minLength="5"
+          maxLength="5"
+          pattern={expirationDatePattern}
           required
           disabled={disableEdit}
         />
@@ -105,6 +113,7 @@ export default function CartPayment() {
           onChange={(e) => setCVV(e.target.value)}
           minLength="3"
           maxLength="3"
+          pattern={stringWithOnlyNumbers}
           required
           disabled={disableEdit}
         />

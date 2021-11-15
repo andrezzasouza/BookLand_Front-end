@@ -28,6 +28,7 @@ export default function CartDelivery() {
   const [loading, setLoading] = useState(false);
   const [disableEdit, setDisableEdit] = useState(true);
   const { setUserAdress } = useContext(CartContext);
+  const stringWithOnlyNumbers = '^[0-9]+$';
 
   function addAdressRequest(event) {
     event.preventDefault();
@@ -110,9 +111,10 @@ export default function CartDelivery() {
           placeholder="CEP*"
           type="text"
           onChange={(e) => setCEP(e.target.value)}
-          minLength="1"
-          maxLength="50"
+          minLength="8"
+          maxLength="8"
           required
+          pattern={stringWithOnlyNumbers}
           disabled={disableEdit}
         />
         <legend>Complement</legend>
