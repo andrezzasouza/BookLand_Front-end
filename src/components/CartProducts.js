@@ -14,6 +14,7 @@ export default function CartProducts() {
     const { token } = JSON.parse(localStorage.getItem('userSession'));
     getCartProducts(token)
       .then((res) => {
+        console.log(res.data);
         const updateUserProduct = [...res.data];
         updateUserProduct.forEach((product) => {
           product.cartQuantity = 1;

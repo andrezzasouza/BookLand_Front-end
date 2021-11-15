@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
@@ -5,6 +6,7 @@ import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import CartContext from '../store/cartContext';
+import { checkout } from '../services/api';
 
 export default function RightBar({ cartSection, setCartSection }) {
   const history = useHistory();
@@ -20,9 +22,18 @@ export default function RightBar({ cartSection, setCartSection }) {
     }
   };
 
-  const checkout = () => {
+  const requireCheckout = () => {
     if (userPayment) {
-      console.log('compra finalizada');
+      const { token } = JSON.parse(localStorage.getItem('userSession'));
+      const checkoutBody = {
+        ok: 'ok',
+      };
+      checkout(checkoutBody, token)
+        .then(() => {
+          console.log('Checkouuuuu');
+        }).catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -47,7 +58,7 @@ export default function RightBar({ cartSection, setCartSection }) {
         </RightBarTotalBox>
         {cartSection !== 'cart' ? (
           <>
-            <SubTitle>Adress</SubTitle>
+            <SubTitle>Address</SubTitle>
             <SubInfo>{userAdress !== '' ? `${userAdress.state}, ${userAdress.city}, ${userAdress.district}, ${userAdress.street}, ${userAdress.CEP}, ${userAdress.complement}` : 'Please insert your delivery info!'}</SubInfo>
           </>
         ) : ('')}
@@ -68,7 +79,7 @@ export default function RightBar({ cartSection, setCartSection }) {
           </NextSectionButton>
         ) : ('')}
         {cartSection === 'payment' ? (
-          <NextSectionButton onClick={() => checkout()}>
+          <NextSectionButton onClick={() => requireCheckout()}>
             Checkout
           </NextSectionButton>
         ) : ('')}

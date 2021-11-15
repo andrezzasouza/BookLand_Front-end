@@ -61,7 +61,7 @@ export default function CartDelivery() {
           addAdressRequest(e);
         }}
       >
-        <legend>State</legend>
+        <legend>State*</legend>
         <StyledInput
           value={state}
           placeholder="State*"
@@ -72,7 +72,7 @@ export default function CartDelivery() {
           required
           disabled={disableEdit}
         />
-        <legend>City</legend>
+        <legend>City*</legend>
         <StyledInput
           value={city}
           placeholder="City*"
@@ -83,7 +83,7 @@ export default function CartDelivery() {
           required
           disabled={disableEdit}
         />
-        <legend>District</legend>
+        <legend>District*</legend>
         <StyledInput
           value={district}
           placeholder="District*"
@@ -94,7 +94,7 @@ export default function CartDelivery() {
           required
           disabled={disableEdit}
         />
-        <legend>Street</legend>
+        <legend>Street*</legend>
         <StyledInput
           value={street}
           placeholder="Street*"
@@ -105,7 +105,7 @@ export default function CartDelivery() {
           required
           disabled={disableEdit}
         />
-        <legend>CEP</legend>
+        <legend>CEP*</legend>
         <StyledInput
           value={CEP}
           placeholder="CEP*"

@@ -59,7 +59,7 @@ export default function CartPayment() {
           addPaymentRequest(e);
         }}
       >
-        <legend>Network</legend>
+        <legend>Network*</legend>
         <StyledInput
           value={network}
           placeholder="Network*"
@@ -70,7 +70,7 @@ export default function CartPayment() {
           required
           disabled={disableEdit}
         />
-        <legend>Card name</legend>
+        <legend>Card name*</legend>
         <StyledInput
           value={cardName}
           placeholder="Card name*"
@@ -81,7 +81,7 @@ export default function CartPayment() {
           required
           disabled={disableEdit}
         />
-        <legend>Card number</legend>
+        <legend>Card number*</legend>
         <StyledInput
           value={cardNumber}
           placeholder="Card number*"
@@ -93,7 +93,7 @@ export default function CartPayment() {
           required
           disabled={disableEdit}
         />
-        <legend>Expiration Date (MM/YY)</legend>
+        <legend>Expiration Date* (MM/YY)</legend>
         <StyledInput
           value={expirationDate}
           placeholder="Expiration Date* (format: MM/YY)"
@@ -105,7 +105,7 @@ export default function CartPayment() {
           required
           disabled={disableEdit}
         />
-        <legend>CVV</legend>
+        <legend>CVV*</legend>
         <StyledInput
           value={CVV}
           placeholder="CVV*"
