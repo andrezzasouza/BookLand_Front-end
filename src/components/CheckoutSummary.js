@@ -32,7 +32,6 @@ export default function CheckoutSummary() {
 
 const CheckoutSummaryPage = styled.div`
     width: 100%;
-    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     padding: 30px 30px 20px;

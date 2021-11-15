@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import CartContext from '../store/cartContext';
+import { clearCart } from '../services/api';
 
 export default function RightBar({ cartSection, setCartSection }) {
   const history = useHistory();
@@ -24,7 +25,14 @@ export default function RightBar({ cartSection, setCartSection }) {
 
   const requireCheckout = () => {
     if (userPayment) {
-      setCartSection('finished');
+      const { token } = JSON.parse(localStorage.getItem('userSession'));
+      clearCart(token)
+        .then(() => {
+          setCartSection('finished');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 

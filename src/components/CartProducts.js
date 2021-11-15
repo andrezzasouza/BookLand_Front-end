@@ -66,7 +66,12 @@ export default function CartProducts() {
   };
 
   if (userProducts.length === 0) {
-    return (<>You don`t have any books in your cart!</>);
+    return (
+      <EmptyCartBox>
+        <p>You don`t have any books in your cart!</p>
+        <button type="button">Keep shopping</button>
+      </EmptyCartBox>
+    );
   }
 
   return (
@@ -98,10 +103,39 @@ export default function CartProducts() {
   );
 }
 
+const EmptyCartBox = styled.div`
+  width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 30px 20px;
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    border: 2px solid #AE3E3E;
+    box-shadow: -3px 5px 15px #515151;
+    position: relative;
+    gap: 25px;
+    p {
+      font-size: 26px;
+      line-height: 30px;
+      font-weight: 700;
+    }
+    button {
+      border:none;
+      background-color: #e5e5e5;
+      font-size: 22px;
+      font-weight: 700;
+      color: #AE3E3D;
+      :hover {
+        color: #5D1919;
+        cursor: pointer;
+        transform: translateY(-3px);
+    }
+    }
+`;
 const SavedMessage = styled.p`
   font-size: 22px;
 `;
-
 const SaveQuantityButton = styled.button`
   width: 90px;
   height: 40px;
@@ -117,7 +151,6 @@ const SaveQuantityButton = styled.button`
       transform: translateY(-3px);
     }
 `;
-
 const CartItemBox = styled.div`
   width: 100%;
   background-color: #e5e5e5;
