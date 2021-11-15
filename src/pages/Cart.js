@@ -13,6 +13,7 @@ import CartProducts from '../components/CartProducts';
 import CartDelivery from '../components/CartDelivery';
 import CartPayment from '../components/CartPayment';
 import RightBar from '../components/RightBar.js';
+import CheckoutSummary from '../components/CheckoutSummary';
 
 export default function Cart() {
   const [cartSection, setCartSection] = useState('cart');
@@ -37,6 +38,9 @@ export default function Cart() {
             ) : ('')}
             {cartSection === 'payment' ? (
               <CartPayment />
+            ) : ('')}
+            {cartSection === 'finished' ? (
+              <CheckoutSummary />
             ) : ('')}
           </TopSectionsAndContent>
           <RightBar

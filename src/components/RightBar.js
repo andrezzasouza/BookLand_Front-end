@@ -7,7 +7,6 @@ import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import CartContext from '../store/cartContext';
-import { checkout } from '../services/api';
 
 export default function RightBar({ cartSection, setCartSection }) {
   const history = useHistory();
@@ -25,16 +24,7 @@ export default function RightBar({ cartSection, setCartSection }) {
 
   const requireCheckout = () => {
     if (userPayment) {
-      const { token } = JSON.parse(localStorage.getItem('userSession'));
-      const checkoutBody = {
-        ok: 'ok',
-      };
-      checkout(checkoutBody, token)
-        .then(() => {
-          console.log('Checkouuuuu');
-        }).catch((err) => {
-          console.log(err);
-        });
+      setCartSection('finished');
     }
   };
 

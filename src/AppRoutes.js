@@ -5,7 +5,6 @@ import Category from './pages/Category';
 import Product from './pages/Product';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Profile from './pages/Profile';
 import Cart from './pages/Cart';
 
 export default function AppRoutes() {
@@ -21,7 +20,6 @@ export default function AppRoutes() {
           <Route exact path="/" component={Home} />
           <Route exact path="/:categoryName" component={Category} />
           <Route exact path="/:productName" component={Product} />
-          <Route exact path="/profile" component={Profile} />
         </Switch>
       </CSSTransition>
     </TransitionGroup>
