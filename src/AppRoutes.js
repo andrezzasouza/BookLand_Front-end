@@ -19,7 +19,7 @@ export default function AppRoutes() {
           <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/" component={Home} />
           <Route exact path="/:categoryName" component={Category} />
-          <Route exact path="/:productName" component={Product} />
+          <Route exact path="/product/:id" component={Product} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/cart" component={Cart} />
         </Switch>
