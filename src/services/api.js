@@ -17,6 +17,8 @@ const postDeliveryInfo = (body, token) => axios.post(`${API_URL}/delivery`, body
 const postPaymentInfo = (body, token) => axios.post(`${API_URL}/payment`, body, createHeaders(token));
 const requestUpdateQuantity = (body, token) => axios.post(`${API_URL}/cart-quantity`, body, createHeaders(token));
 const clearCart = (token) => axios.delete(`${API_URL}/cart-quantity`, createHeaders(token));
+const getSavedAddress = (token) => axios.get(`${API_URL}/delivery`, createHeaders(token));
+const getSavedPayment = (token) => axios.get(`${API_URL}/payment`, createHeaders(token));
 
 export {
   signUp,
@@ -28,4 +30,6 @@ export {
   postPaymentInfo,
   requestUpdateQuantity,
   clearCart,
+  getSavedAddress,
+  getSavedPayment,
 };

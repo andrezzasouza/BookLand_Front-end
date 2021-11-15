@@ -61,7 +61,7 @@ export default function RightBar({ cartSection, setCartSection }) {
             <SubInfo>{userAdress !== '' ? `${userAdress.state}, ${userAdress.city}, ${userAdress.district}, ${userAdress.street}, ${userAdress.CEP}, ${userAdress.complement}` : 'Please insert your delivery info!'}</SubInfo>
           </>
         ) : ('')}
-        {cartSection === 'payment' ? (
+        {cartSection !== 'cart' && cartSection !== 'delivery' ? (
           <>
             <SubTitle>Payment</SubTitle>
             <SubInfo>{userPayment !== '' ? `Network: ${userPayment.network}\n Card name: ${userPayment.cardName}\n Card number: ${userPayment.cardNumber}\n Exp. Date: ${userPayment.expirationDate}` : 'Please insert your payment info!'}</SubInfo>

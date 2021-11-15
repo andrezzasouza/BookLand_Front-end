@@ -47,7 +47,6 @@ const CheckoutSummaryPage = styled.div`
 `;
 const CodeBox = styled.div`
   display: flex;
-  justify-content: space-between;
   margin: 20px 0px;
   p {
     font-weight: 700;
@@ -65,6 +64,7 @@ const CopyButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 20px;
   :hover {
       background-color: ${({ copiedMessage }) => (copiedMessage === 'copy' ? '#6d6b6b' : '#53c165')};
       cursor: pointer;

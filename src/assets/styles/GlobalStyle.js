@@ -129,6 +129,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         font-family: 'Lato', sans-serif;
+        background-color:#F2F2F2;
     }
     body::-webkit-scrollbar {
         width: 0.5em;

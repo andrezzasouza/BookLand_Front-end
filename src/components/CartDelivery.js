@@ -3,7 +3,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 import styled from 'styled-components';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import CartContext from '../store/cartContext';
 import {
   StyledForm,
@@ -16,7 +16,7 @@ import {
   PencilIcon,
   Legend,
 } from '../assets/styles/SaveEditButtons';
-import { postDeliveryInfo } from '../services/api';
+import { postDeliveryInfo, getSavedAddress } from '../services/api';
 
 export default function CartDelivery() {
   const [state, setState] = useState('');
@@ -52,6 +52,27 @@ export default function CartDelivery() {
         setLoading(false);
       });
   }
+
+  const obtainSavedAddress = () => {
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
+
+    getSavedAddress(token)
+      .then((res) => {
+        setState(res.data.state);
+        setCity(res.data.city);
+        setDistrict(res.data.district);
+        setStreet(res.data.street);
+        setCEP(res.data.cep);
+        setComplement(res.data.complement);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    obtainSavedAddress();
+  }, []);
 
   return (
     <DeliveryBox>

@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-constant-condition */
 import styled from 'styled-components';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import CartContext from '../store/cartContext';
 import {
   StyledForm,
@@ -15,7 +15,7 @@ import {
   PencilIcon,
   Legend,
 } from '../assets/styles/SaveEditButtons';
-import { postPaymentInfo } from '../services/api';
+import { postPaymentInfo, getSavedPayment } from '../services/api';
 
 export default function CartPayment() {
   const [network, setNetwork] = useState('');
@@ -50,6 +50,25 @@ export default function CartPayment() {
         setLoading(false);
       });
   }
+
+  const obtainSavedPayment = () => {
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
+
+    getSavedPayment(token)
+      .then((res) => {
+        setNetwork(res.data.network);
+        setCardName(res.data.name);
+        setCardNumber(res.data['card number']);
+        setExpirationDate(res.data.expiration_date);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    obtainSavedPayment();
+  }, []);
 
   return (
     <PaymentBox>

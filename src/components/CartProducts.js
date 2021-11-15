@@ -3,7 +3,10 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-import { useContext, useEffect, useState } from 'react';
+import {
+  useContext, useEffect, useState,
+} from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoTrashBin as TrashIcon } from 'react-icons/io5';
 import { getCartProducts, deleteCartProduct, requestUpdateQuantity } from '../services/api';
@@ -12,6 +15,7 @@ import CartContext from '../store/cartContext';
 export default function CartProducts() {
   const { userProducts, setUserProducts } = useContext(CartContext);
   const [savedMessage, setSavedMessage] = useState('');
+  const history = useHistory();
 
   const obtainUserCartProducts = () => {
     const { token } = JSON.parse(localStorage.getItem('userSession'));
@@ -69,7 +73,7 @@ export default function CartProducts() {
     return (
       <EmptyCartBox>
         <p>You don`t have any books in your cart!</p>
-        <button type="button">Keep shopping</button>
+        <button type="button" onClick={() => history.push('/')}>Keep shopping</button>
       </EmptyCartBox>
     );
   }
@@ -135,6 +139,7 @@ const EmptyCartBox = styled.div`
 `;
 const SavedMessage = styled.p`
   font-size: 22px;
+  color: #52a02e;
 `;
 const SaveQuantityButton = styled.button`
   width: 90px;
