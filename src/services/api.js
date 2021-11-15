@@ -16,6 +16,7 @@ const deleteCartProduct = (body, token) => axios.post(`${API_URL}/cart-products`
 const postDeliveryInfo = (body, token) => axios.post(`${API_URL}/delivery`, body, createHeaders(token));
 const postPaymentInfo = (body, token) => axios.post(`${API_URL}/payment`, body, createHeaders(token));
 const checkout = (body, token) => axios.post(`${API_URL}/checkout`, body, createHeaders(token));
+const requestUpdateQuantity = (body, token) => axios.post(`${API_URL}/cart-quantity`, body, createHeaders(token));
 
 export {
   signUp,
@@ -26,4 +27,5 @@ export {
   postDeliveryInfo,
   postPaymentInfo,
   checkout,
+  requestUpdateQuantity,
 };

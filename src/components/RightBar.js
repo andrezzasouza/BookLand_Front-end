@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable no-return-assign */
@@ -38,18 +39,18 @@ export default function RightBar({ cartSection, setCartSection }) {
   };
 
   let totalValue = 0;
-  userProducts.forEach((book) => totalValue += (book.price * book.cartQuantity));
+  userProducts.forEach((book) => totalValue += (book.price * book.book_quantity));
 
   return (
     <RightBarContainer>
       <>
         <h1>Order Summary</h1>
         {userProducts.map(({
-          id, name, price, cartQuantity,
+          id, name, price, book_quantity,
         }) => (
           <RightBarProductPrice key={id}>
             <p>{name}</p>
-            <b>{`(${cartQuantity}x) ${((price / 100) * cartQuantity).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
+            <b>{`(${book_quantity}x) ${((price / 100) * book_quantity).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}</b>
           </RightBarProductPrice>
         ))}
         <RightBarTotalBox>

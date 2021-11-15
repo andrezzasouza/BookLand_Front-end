@@ -1,25 +1,23 @@
+/* eslint-disable max-len */
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IoTrashBin as TrashIcon } from 'react-icons/io5';
-import { getCartProducts, deleteCartProduct } from '../services/api';
+import { getCartProducts, deleteCartProduct, requestUpdateQuantity } from '../services/api';
 import CartContext from '../store/cartContext';
 
 export default function CartProducts() {
   const { userProducts, setUserProducts } = useContext(CartContext);
+  const [savedMessage, setSavedMessage] = useState('');
 
   const obtainUserCartProducts = () => {
     const { token } = JSON.parse(localStorage.getItem('userSession'));
     getCartProducts(token)
       .then((res) => {
-        console.log(res.data);
-        const updateUserProduct = [...res.data];
-        updateUserProduct.forEach((product) => {
-          product.cartQuantity = 1;
-        });
-        setUserProducts(updateUserProduct);
+        setUserProducts(res.data);
       })
       .catch((err) => {
         console.log(err.response);
@@ -42,11 +40,26 @@ export default function CartProducts() {
       });
   };
 
+  const saveBookQuantity = (bookName, bookId, bookQuantity) => {
+    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const updateBody = {
+      bookId,
+      bookQuantity,
+    };
+    requestUpdateQuantity(updateBody, token)
+      .then(() => {
+        setSavedMessage(`${bookQuantity}x of '${bookName}' saved to cart!`);
+        setTimeout(() => setSavedMessage(''), 5000);
+      }).catch((err) => {
+        console.log(err);
+      });
+  };
+
   const changeBookQuantity = (e, id) => {
     const updateUserProduct = [...userProducts];
     updateUserProduct.forEach((product) => {
       if (product.id === id) {
-        product.cartQuantity = e.target.value;
+        product.book_quantity = e.target.value;
       }
     });
     setUserProducts(updateUserProduct);
@@ -57,28 +70,53 @@ export default function CartProducts() {
   }
 
   return (
-    userProducts.map(({
-      id, name, description, price, image, cartQuantity,
-    }) => (
-      <CartItemBox key={id}>
-        <BookAndInfo>
-          <img src={image} alt="" />
-          <BookInfo>
-            <h2>{name}</h2>
-            <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
-            <InfoButtons>
-              <input type="number" min="1" max="100" value={cartQuantity} onChange={(e) => changeBookQuantity(e, id)} />
-              <TrashIcon className="trash-icon" onClick={() => removeFromCart(id)} />
-            </InfoButtons>
-          </BookInfo>
-        </BookAndInfo>
-        <details>
-          <summary>Description</summary>
-          {description}
-        </details>
-      </CartItemBox>
-    )));
+    <>
+      <SavedMessage>{savedMessage}</SavedMessage>
+      {userProducts.map(({
+        id, name, description, price, image, book_quantity,
+      }) => (
+        <CartItemBox key={id}>
+          <BookAndInfo>
+            <img src={image} alt="" />
+            <BookInfo>
+              <h2>{name}</h2>
+              <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
+              <InfoButtons>
+                <input type="number" min="1" max="100" value={book_quantity} onChange={(e) => changeBookQuantity(e, id)} />
+                <SaveQuantityButton onClick={() => saveBookQuantity(name, id, book_quantity)}>Save</SaveQuantityButton>
+                <TrashIcon className="trash-icon" onClick={() => removeFromCart(id)} />
+              </InfoButtons>
+            </BookInfo>
+          </BookAndInfo>
+          <details>
+            <summary>Description</summary>
+            {description}
+          </details>
+        </CartItemBox>
+      ))}
+    </>
+  );
 }
+
+const SavedMessage = styled.p`
+  font-size: 22px;
+`;
+
+const SaveQuantityButton = styled.button`
+  width: 90px;
+  height: 40px;
+  background-color: #319b29;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  :hover {
+      background-color: #246d1d;
+      cursor: pointer;
+      transform: translateY(-3px);
+    }
+`;
 
 const CartItemBox = styled.div`
   width: 100%;
