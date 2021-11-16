@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
@@ -25,7 +26,11 @@ export default function RightBar({ cartSection, setCartSection }) {
 
   const requireCheckout = () => {
     if (userPayment) {
-      const { token } = JSON.parse(localStorage.getItem('userSession'));
+      const userSession = JSON.parse(localStorage.getItem('userSession'));
+      if (!userSession) {
+        return history.push('/');
+      }
+      const token = userSession.token;
       clearCart(token)
         .then(() => {
           setCartSection('finished');

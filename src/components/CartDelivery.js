@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 /* eslint-disable consistent-return */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
@@ -47,7 +48,7 @@ export default function CartDelivery() {
       district,
       street,
       CEP,
-      complement,
+      complement: complement ? (complement) : (''),
     };
     postDeliveryInfo(adressBody, token)
       .then(() => {
@@ -68,6 +69,23 @@ export default function CartDelivery() {
 
     getSavedAddress(token)
       .then((res) => {
+        const adressBody = {
+          state: res.data.state,
+          city: res.data.city,
+          district: res.data.district,
+          street: res.data.street,
+          CEP: res.data.cep,
+        };
+        if (Object.values(adressBody).every((el) => el !== undefined)) {
+          setUserAdress({
+            state: res.data.state,
+            city: res.data.city,
+            district: res.data.district,
+            street: res.data.street,
+            CEP: res.data.cep,
+            complement: res.data.complement === null ? ('') : (res.data.complement),
+          });
+        }
         setState(res.data.state);
         setCity(res.data.city);
         setDistrict(res.data.district);
