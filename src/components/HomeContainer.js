@@ -40,7 +40,7 @@ export default function HomeContainer({ books, message, setMessage }) {
     e.preventDefault();
 
     if (jsonToken) {
-      const bookId = idPath.replace('http://localhost:3000/product/', '');
+      const bookId = idPath.replace('https://bookland-bookstore.vercel.app/product/', '');
       const body = {
         id: bookId,
       };

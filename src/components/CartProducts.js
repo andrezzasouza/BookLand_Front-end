@@ -66,6 +66,7 @@ export default function CartProducts() {
     };
     requestUpdateQuantity(updateBody, token)
       .then(() => {
+        window.scrollTo(0, 0);
         setSavedMessage(`${bookQuantity}x of '${bookName}' saved to cart!`);
         setTimeout(() => setSavedMessage(''), 5000);
       }).catch((err) => {

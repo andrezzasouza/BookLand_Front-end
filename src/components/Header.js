@@ -43,7 +43,7 @@ export default function Header() {
   useEffect(() => {
     setJsonToken(JSON.parse(localStorage.getItem('userSession')));
   }, []);
-  console.log(jsonToken);
+
   useEffect(() => {
     function hideMenu(e) {
       if (showMenu && menu.current !== e.target) {
@@ -83,8 +83,7 @@ export default function Header() {
 
   function logOut() {
     header(jsonToken.token)
-      .then((res) => {
-        console.log(res.status);
+      .then(() => {
         clearStorage();
         setJsonToken('');
         setUserAdress('');
