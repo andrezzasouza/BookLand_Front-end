@@ -98,7 +98,6 @@ const RightBarContainer = styled.div`
   background-color:#e5e5e5;
   border-radius: 10px;
   padding: 25px 17px;
-  border: 2px solid #AE3E3E;
   box-shadow: -3px 5px 15px #515151;
   h1 {
     align-self: center;

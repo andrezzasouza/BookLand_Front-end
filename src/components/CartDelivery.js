@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-restricted-globals */
@@ -32,7 +34,11 @@ export default function CartDelivery() {
 
   function addAdressRequest(event) {
     event.preventDefault();
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const userSession = JSON.parse(localStorage.getItem('userSession'));
+    if (!userSession) {
+      return history.push('/');
+    }
+    const token = userSession.token;
     setLoading(true);
     setDisableEdit(true);
     const adressBody = {
@@ -54,7 +60,11 @@ export default function CartDelivery() {
   }
 
   const obtainSavedAddress = () => {
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const userSession = JSON.parse(localStorage.getItem('userSession'));
+    if (!userSession) {
+      return history.push('/');
+    }
+    const token = userSession.token;
 
     getSavedAddress(token)
       .then((res) => {

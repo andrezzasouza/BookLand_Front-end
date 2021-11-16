@@ -85,17 +85,17 @@ const TopSections = styled.div`
 const CartSection = styled.span`
     background-color: ${({ cartSection }) => (cartSection === 'cart' ? '#AE3E3E' : '#e5e5e5')};
     color: ${({ cartSection }) => (cartSection === 'cart' ? '#ffffff' : '#AE3E3E')};
-    border: ${({ cartSection }) => (cartSection === 'cart' ? '#ffffff' : '2px solid #AE3E3E')};
+    border: ${({ cartSection }) => (cartSection === 'cart' ? '#ffffff' : 'none')};
 `;
 const DeliverySection = styled.span`
     background-color: ${({ cartSection }) => (cartSection === 'delivery' ? '#AE3E3E' : '#e5e5e5')};
     color: ${({ cartSection }) => (cartSection === 'delivery' ? '#ffffff' : '#AE3E3E')};
-    border: ${({ cartSection }) => (cartSection === 'delivery' ? '#ffffff' : '2px solid #AE3E3E')};
+    border: ${({ cartSection }) => (cartSection === 'delivery' ? '#ffffff' : 'none')};
 `;
 const PaymentSection = styled.span`
     background-color: ${({ cartSection }) => (cartSection === 'payment' ? '#AE3E3E' : '#e5e5e5')};
     color: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '#AE3E3E')};
-    border: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : '2px solid #AE3E3E')};
+    border: ${({ cartSection }) => (cartSection === 'payment' ? '#ffffff' : 'none')};
 `;
 const CartIconTop = styled(IoCartSharp)`
   position: absolute;

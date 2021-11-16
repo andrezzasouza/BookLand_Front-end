@@ -1,8 +1,11 @@
+/* eslint-disable consistent-return */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-console */
 /* eslint-disable no-constant-condition */
 import styled from 'styled-components';
 import { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import CartContext from '../store/cartContext';
 import {
   StyledForm,
@@ -28,10 +31,16 @@ export default function CartPayment() {
   const { setUserPayment } = useContext(CartContext);
   const stringWithOnlyNumbers = '^[0-9]+$';
   const expirationDatePattern = '^(0[1-9]|1[0-2])\/?([0-9]{2})$';
+  const history = useHistory();
 
   function addPaymentRequest(event) {
     event.preventDefault();
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const userSession = JSON.parse(localStorage.getItem('userSession'));
+    if (!userSession) {
+      return history.push('/');
+    }
+    const token = userSession.token;
+
     setLoading(true);
     setDisableEdit(true);
     const paymentBody = {
@@ -52,7 +61,11 @@ export default function CartPayment() {
   }
 
   const obtainSavedPayment = () => {
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const userSession = JSON.parse(localStorage.getItem('userSession'));
+    if (!userSession) {
+      return history.push('/');
+    }
+    const token = userSession.token;
 
     getSavedPayment(token)
       .then((res) => {

@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable max-len */
 /* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
@@ -18,7 +20,11 @@ export default function CartProducts() {
   const history = useHistory();
 
   const obtainUserCartProducts = () => {
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const userSession = JSON.parse(localStorage.getItem('userSession'));
+    if (!userSession) {
+      return history.push('/');
+    }
+    const token = userSession.token;
     getCartProducts(token)
       .then((res) => {
         setUserProducts(res.data);
@@ -33,7 +39,11 @@ export default function CartProducts() {
   }, []);
 
   const removeFromCart = (bookId) => {
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const userSession = JSON.parse(localStorage.getItem('userSession'));
+    if (!userSession) {
+      return history.push('/');
+    }
+    const token = userSession.token;
     deleteCartProduct({ bookId }, token)
       .then(() => {
         const newProducts = userProducts.filter((product) => product.id !== bookId);
@@ -45,7 +55,11 @@ export default function CartProducts() {
   };
 
   const saveBookQuantity = (bookName, bookId, bookQuantity) => {
-    const { token } = JSON.parse(localStorage.getItem('userSession'));
+    const userSession = JSON.parse(localStorage.getItem('userSession'));
+    if (!userSession) {
+      return history.push('/');
+    }
+    const token = userSession.token;
     const updateBody = {
       bookId,
       bookQuantity,
@@ -158,14 +172,14 @@ const SaveQuantityButton = styled.button`
 `;
 const CartItemBox = styled.div`
   width: 100%;
-  background-color: #e5e5e5;
+  background-color: #E5E5E5;
   display: flex;
   flex-direction: column;
   padding: 30px;
   padding-bottom: 18px;
   border-radius: 10px;
-  border: 2px solid #AE3E3E;
   box-shadow: -3px 5px 15px #515151;
+
   summary {
     font-size: 20px;
     font-weight: 700;
