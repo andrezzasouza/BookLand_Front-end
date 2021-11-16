@@ -5,6 +5,7 @@ const API_URL = 'http://localhost:4000';
 const signUp = (body) => axios.post(`${API_URL}/sign-up`, body);
 const signIn = (body) => axios.post(`${API_URL}/sign-in`, body);
 const home = () => axios.get(`${API_URL}/home`);
+const product = (id) => axios.get(`${API_URL}/product/${id}`);
 
 // const createHeaders = (token) => ({
 //   headers: {
@@ -12,4 +13,9 @@ const home = () => axios.get(`${API_URL}/home`);
 //   },
 // });
 
-export { signUp, signIn, home };
+export {
+  signUp,
+  signIn,
+  home,
+  product,
+};

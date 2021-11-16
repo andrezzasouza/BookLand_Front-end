@@ -37,7 +37,8 @@ const BooksContainer = styled.section`
 const BookData = styled.div`
   padding: 15px 15px 10px;
   border-radius: 5px;
-  background-color: lightgray;
+  background-color: #e5e5e5;
+  box-shadow: -3px 5px 15px #515151;
   color: #000000;
   cursor: pointer;
   img {
