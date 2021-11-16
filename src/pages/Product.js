@@ -1,6 +1,10 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
-import { useHistory, useParams, Link } from 'react-router-dom';
+import {
+  useHistory,
+  useParams,
+  Link,
+} from 'react-router-dom';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { addToCart, product } from '../services/api';
 import Header from '../components/Header';
@@ -63,10 +67,6 @@ export default function Product() {
       });
   }, []);
 
-  function redirect() {
-    history.push('/cart');
-  }
-
   function checkStatus() {
     const body = {
       id,
@@ -84,16 +84,11 @@ export default function Product() {
               || err.status === 403
               || err.status === 401
               || err.status === 400
+              || err.status === 409
             ) {
               setMessage(
                 err.data,
               );
-            }
-            if (err.status === 409) {
-              setMessage(
-                err.data,
-              );
-              setTimeout(redirect, 3000);
             }
           } else {
             setMessage(

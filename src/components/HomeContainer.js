@@ -27,10 +27,6 @@ export default function HomeContainer({ books, message, setMessage }) {
     setJsonToken(JSON.parse(localStorage.getItem('userSession')));
   }, []);
 
-  function redirect() {
-    history.push('/cart');
-  }
-
   function checkStatus(e) {
     let idPath = '';
     if (e.target.nodeName === 'svg') {
@@ -60,16 +56,11 @@ export default function HomeContainer({ books, message, setMessage }) {
               || err.status === 403
               || err.status === 401
               || err.status === 400
+              || err.status === 409
             ) {
               setMessage(
                 err.data,
               );
-            }
-            if (err.status === 409) {
-              setMessage(
-                err.data,
-              );
-              setTimeout(redirect, 3000);
             }
           } else {
             setMessage(
