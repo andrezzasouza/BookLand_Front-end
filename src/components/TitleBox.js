@@ -20,7 +20,7 @@ const TitleContainer = styled.div`
   img {
     vertical-align: middle;
     object-fit: contain;
-    width: 100%; 
+    width: 100%;
   }
   h1 {
     font-family: 'Righteous', cursive;

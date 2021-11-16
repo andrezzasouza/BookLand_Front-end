@@ -5,7 +5,8 @@ const SaveInfoButton = styled.button`
   border: none;
   width: 110px;
   align-self: center;
-  background-color: #319b29;
+  background-color: ${(props) => (props.disabled ? '#adadad' : '#319b29')};
+  opacity: ${(props) => (props.disabled ? 0.7 : 1)};
   border-radius: 5px;
   color: #ffffff;
   font-size: 25px;
@@ -15,11 +16,11 @@ const SaveInfoButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  :hover {
-      background-color: #246d1d;
-      cursor: pointer;
-      transform: translateY(-3px);
-    }
+  &:hover {
+    background-color: ${(props) => (props.disabled ? '#adadad' : '#246d1d')};
+    cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+    transform: ${(props) => (props.disabled ? 'translateY(0px)' : 'translateY(-3px)')} ;
+  }
 `;
 const CheckMarkIcon = styled(IoCheckmarkSharp)`
   font-size: 30px;
@@ -31,8 +32,9 @@ const EditInfoButton = styled.button`
   border: none;
   width: 100px;
   align-self: center;
-  background-color: #adadad;
+  background-color: ${(props) => (props.disabled ? '#adadad' : '#ae3e3e')};
   border-radius: 5px;
+  opacity: ${(props) => (props.disabled ? 0.7 : 1)};
   color: #ffffff;
   font-size: 25px;
   font-weight: 700;
@@ -42,11 +44,11 @@ const EditInfoButton = styled.button`
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  :hover {
-      background-color: #6d6b6b;
-      cursor: pointer;
-      transform: translateY(-3px);
-    }
+  &:hover {
+    background-color: #5e1919;
+    cursor: pointer;
+    transform: translateY(-3px);
+  }
 `;
 const PencilIcon = styled(IoPencilSharp)`
   font-size: 22px;

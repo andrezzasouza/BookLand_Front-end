@@ -21,6 +21,7 @@ const getSavedAddress = (token) => axios.get(`${API_URL}/delivery`, createHeader
 const getSavedPayment = (token) => axios.get(`${API_URL}/payment`, createHeaders(token));
 const header = (token) => axios.delete(`${API_URL}/header`, createHeaders(token));
 const product = (id) => axios.get(`${API_URL}/product/${id}`);
+const addToCart = (body, token) => axios.post(`${API_URL}/add-to-cart/`, body, createHeaders(token));
 
 export {
   signUp,
@@ -36,4 +37,5 @@ export {
   getSavedPayment,
   header,
   product,
+  addToCart,
 };

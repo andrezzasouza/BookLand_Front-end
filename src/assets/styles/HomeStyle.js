@@ -60,6 +60,8 @@ const BookData = styled.div`
   h3 {
     font-family: 'Righteous', cursive;
     font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 2px;
     color: #ae3e3e;
   }
   button {

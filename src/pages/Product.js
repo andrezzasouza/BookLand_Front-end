@@ -1,11 +1,17 @@
 /* eslint-disable max-len */
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { product } from '../services/api';
+import {
+  useHistory,
+  useParams,
+  Link,
+} from 'react-router-dom';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import { addToCart, product } from '../services/api';
 import Header from '../components/Header';
 import TitleBox from '../components/TitleBox';
 import productImg from '../assets/images/product-image.jpg';
 import Footer from '../components/Footer';
+import DivGhost from '../components/GhostDiv';
 import {
   ProductContainer,
   TopInfo,
@@ -16,14 +22,25 @@ import {
   BuyButton,
   BottomInfo,
   TextBox,
+  Return,
 } from '../assets/styles/ProductStyle';
+import {
+  StyledSignUpSucess,
+} from '../assets/styles/SignSucessStyle';
 import { ErrorMsg } from '../assets/styles/HomeStyle';
 
 export default function Product() {
+  const [jsonToken, setJsonToken] = useState('');
   const [info, setInfo] = useState('');
   const [message, setMessage] = useState('Loading...');
   const [hasVideo, setHasVideo] = useState(false);
   const { id } = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setJsonToken(JSON.parse(localStorage.getItem('userSession')));
+  }, []);
 
   useEffect(() => {
     product(id)
@@ -40,19 +57,91 @@ export default function Product() {
         const error = err.response.status;
         if (error === 500) {
           setMessage(
-            "It wasn't possible to access the server. Please, try again later!",
+            err.data,
+          );
+        } else {
+          setMessage(
+            "Uh, oh. Something's wrong. Please, try again later!",
           );
         }
       });
   }, []);
+
+  function checkStatus() {
+    const body = {
+      id,
+    };
+    if (jsonToken) {
+      addToCart(body, jsonToken.token)
+        .then(() => {
+          history.push('/cart');
+        })
+        .catch((res) => {
+          const err = res.response;
+          if (err) {
+            if (err.status === 500
+              || err.status === 400
+              || err.status === 403
+              || err.status === 401
+              || err.status === 400
+              || err.status === 409
+            ) {
+              setMessage(
+                err.data,
+              );
+            }
+          } else {
+            setMessage(
+              "Uh, oh. Something's wrong. Please, try again later!",
+            );
+          }
+        });
+    } else {
+      setMessage(
+        "Log in to add items to your cart. You're being redirected!",
+      );
+    }
+  }
   return (
     <>
       <Header />
+      <DivGhost />
       <TitleBox
         pageTitle=""
         backgroundImg={productImg}
       />
-      {message ? (<ErrorMsg>{message}</ErrorMsg>
+      {message ? (
+        <>
+          <ErrorMsg>
+            {message}
+          </ErrorMsg>
+          {jsonToken
+            ? (
+              <Return>
+                <Link to="/">
+                  Return home
+                </Link>
+              </Return>
+            ) : (
+              <StyledSignUpSucess>
+                <div className="timer-wrapper">
+                  <CountdownCircleTimer
+                    isPlaying
+                    duration={5}
+                    colors={[
+                      ['#5d1919'],
+                    ]}
+                    size={140}
+                    trailColor="#ffffff"
+                    strokeWidth={12}
+                    onComplete={() => history.push('/sign-in')}
+                  >
+                    {({ remainingTime }) => remainingTime}
+                  </CountdownCircleTimer>
+                </div>
+              </StyledSignUpSucess>
+            )}
+        </>
       ) : (
         <>
           <ProductContainer>
@@ -82,7 +171,7 @@ export default function Product() {
                 <Price>{(info[0].price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Price>
                 <p>Shipping:</p>
                 <Shipping>Bookland is offering free shipping for all books during the pandemic!</Shipping>
-                <BuyButton type="button">
+                <BuyButton type="button" onClick={() => checkStatus()}>
                   Buy
                 </BuyButton>
               </BookInfo>
