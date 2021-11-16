@@ -25,6 +25,9 @@ const Container = styled.main`
 const ErrorMsg = styled.h2`
   margin: 30px 0 60px;
   text-align: center;
+  font-family: 'Righteous', cursive;
+  font-size: 36px;
+  color: #ae3e3e;
 `;
 
 const BooksContainer = styled.section`
