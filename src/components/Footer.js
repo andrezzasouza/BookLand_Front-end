@@ -32,6 +32,8 @@ export default function Footer() {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
   const modalRef = useRef();
+  const messageWpp = 'Hi, there! Could you, please, help me?';
+  const sendMessage = window.encodeURIComponent(messageWpp);
 
   function closeLocation(e) {
     if (modalRef.current === e.target) {
@@ -149,7 +151,7 @@ export default function Footer() {
           <a href="tel:5521999999999" target="_blank" rel="noopener noreferrer">
             <CgPhone className="icons-style" />
           </a>
-          <a href="tel:5521999999999" target="_blank" rel="noopener noreferrer">
+          <a href={`https://wa.me/5521982304475?text=${sendMessage}`} target="_blank" rel="noopener noreferrer">
             <IoLogoWhatsapp className="icons-style" />
           </a>
         </SocialMediaDiv>
