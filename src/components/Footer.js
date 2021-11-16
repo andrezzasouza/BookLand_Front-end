@@ -151,7 +151,7 @@ export default function Footer() {
           <a href="tel:5521999999999" target="_blank" rel="noopener noreferrer">
             <CgPhone className="icons-style" />
           </a>
-          <a href={`https://wa.me/5521982304475?text=${sendMessage}`} target="_blank" rel="noopener noreferrer">
+          <a href={`https://wa.me/5521999999999?text=${sendMessage}`} target="_blank" rel="noopener noreferrer">
             <IoLogoWhatsapp className="icons-style" />
           </a>
         </SocialMediaDiv>
