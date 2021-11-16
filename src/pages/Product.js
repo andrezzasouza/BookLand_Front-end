@@ -21,7 +21,7 @@ import { ErrorMsg } from '../assets/styles/HomeStyle';
 
 export default function Product() {
   const [info, setInfo] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('Loading...');
   const [hasVideo, setHasVideo] = useState(false);
   const { id } = useParams();
 
@@ -30,8 +30,6 @@ export default function Product() {
       .then((res) => {
         if (res.status === 200) {
           setInfo(res.data);
-          // eslint-disable-next-line no-console
-          console.data(res.data);
           setMessage('');
           if (res.data[0].video) {
             setHasVideo(true);
@@ -54,7 +52,7 @@ export default function Product() {
         pageTitle=""
         backgroundImg={productImg}
       />
-      {message && !info ? (<ErrorMsg>{message}</ErrorMsg>
+      {message ? (<ErrorMsg>{message}</ErrorMsg>
       ) : (
         <>
           <ProductContainer>
@@ -65,7 +63,9 @@ export default function Product() {
               <BookInfo>
                 <div>
                   <h3>{info[0].name}</h3>
-                  <p>by Tahereh Mafi</p>
+                  <p>
+                    {`by ${info[0].author}`}
+                  </p>
                 </div>
                 <Details>
                   <p>{`Category: ${info[0].category_name}`}</p>
