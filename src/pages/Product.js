@@ -63,9 +63,9 @@ export default function Product() {
       });
   }, []);
 
-  // function redirect() {
-  //   history.push('/sign-in');
-  // }
+  function redirect() {
+    history.push('/cart');
+  }
 
   function checkStatus() {
     const body = {
@@ -77,18 +77,23 @@ export default function Product() {
           history.push('/cart');
         })
         .catch((res) => {
-          const err = res.response.status;
+          const err = res.response;
           if (err) {
-            if (err === 500
-              || err === 400
-              || err === 409
-              || err === 403
-              || err === 401
-              || err === 400
+            if (err.status === 500
+              || err.status === 400
+              || err.status === 403
+              || err.status === 401
+              || err.status === 400
             ) {
               setMessage(
                 err.data,
               );
+            }
+            if (err.status === 409) {
+              setMessage(
+                err.data,
+              );
+              setTimeout(redirect, 3000);
             }
           } else {
             setMessage(
@@ -100,7 +105,6 @@ export default function Product() {
       setMessage(
         "Log in to add items to your cart. You're being redirected!",
       );
-      // setTimeout(redirect, 3000);
     }
   }
   return (

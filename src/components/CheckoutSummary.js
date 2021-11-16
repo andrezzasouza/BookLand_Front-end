@@ -56,7 +56,7 @@ const CodeBox = styled.div`
 const CopyButton = styled.button`
   border: none;
   width: fit-content;
-  background-color: ${({ copiedMessage }) => (copiedMessage === 'copy' ? '#969696' : '#53c165')};
+  background-color: ${({ copiedMessage }) => (copiedMessage === 'copy' ? '#ae3e3e' : '#53c165')};
   border-radius: 5px;
   color: #ffffff;
   font-size: 20px;
@@ -66,8 +66,8 @@ const CopyButton = styled.button`
   align-items: center;
   margin-left: 20px;
   :hover {
-      background-color: ${({ copiedMessage }) => (copiedMessage === 'copy' ? '#6d6b6b' : '#53c165')};
-      cursor: pointer;
-      transform: translateY(-3px);
-    }
+    background-color: ${({ copiedMessage }) => (copiedMessage === 'copy' ? '#5e1919' : '#53c165')};
+    cursor: pointer;
+    transform: translateY(-3px);
+  }
 `;

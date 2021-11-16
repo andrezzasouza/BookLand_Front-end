@@ -49,6 +49,7 @@ export default function Home() {
       <HomeContainer
         books={books}
         message={message}
+        setMessage={setMessage}
       />
       <Footer />
     </>
