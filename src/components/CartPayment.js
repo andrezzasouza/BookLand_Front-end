@@ -73,11 +73,28 @@ export default function CartPayment() {
         setCardName(res.data.name);
         setCardNumber(res.data['card number']);
         setExpirationDate(res.data.expiration_date);
+        const paymentBody = {
+          network: res.data.network,
+          cardName: res.data.name,
+          cardNumber: res.data['card number'],
+          expirationDate: res.data.expiration_date,
+        };
+        if (Object.values(paymentBody).every((el) => el !== undefined)) {
+          setUserPayment({
+            network: res.data.network,
+            cardName: res.data.name,
+            cardNumber: res.data['card number'],
+            expirationDate: res.data.expiration_date,
+            CVV: '',
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  console.log(CVV);
 
   useEffect(() => {
     obtainSavedPayment();
