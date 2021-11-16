@@ -31,6 +31,10 @@ export default function Home() {
               "It wasn't possible to access the server. Please, try again later!",
             );
           }
+        } else {
+          setMessage(
+            "Uh, oh. Something's wrong. Please, try again later!",
+          );
         }
       });
   }, []);

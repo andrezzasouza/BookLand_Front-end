@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { Carousel } from 'react-responsive-carousel';
 import { IoCartSharp } from 'react-icons/io5';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
+
+const CarouselContainer = styled(Carousel)`
+  margin-top: 70px;
+`;
 
 const CarouselPage = styled.div`
   object-fit: contain;
@@ -84,6 +89,7 @@ const Loading = styled(Loader)`
 `;
 
 export {
+  CarouselContainer,
   CarouselPage,
   Container,
   ErrorMsg,
