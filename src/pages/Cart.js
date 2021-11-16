@@ -14,12 +14,14 @@ import CartDelivery from '../components/CartDelivery';
 import CartPayment from '../components/CartPayment';
 import RightBar from '../components/RightBar.js';
 import CheckoutSummary from '../components/CheckoutSummary';
+import Header from '../components/Header';
 
 export default function Cart() {
   const [cartSection, setCartSection] = useState('cart');
 
   return (
     <>
+      <Header />
       <TitleBox pageTitle="Shopping Cart" backgroundImg={cartImg} />
       <CartIconTop onClick={() => window.location.reload()} />
       <PageContentContainer>
