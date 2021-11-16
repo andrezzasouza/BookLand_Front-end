@@ -116,6 +116,20 @@ const TextBox = styled.div`
   }
 `;
 
+const Return = styled.p`
+  color: #000000;
+  font-size: 18px;
+  margin: 0 0 15px;
+  text-align: center;
+  font-weight: bold;
+  a {
+    color: inherit;
+    &:hover {
+      color: #ae3e3e;
+    }
+  }
+`;
+
 export {
   ProductContainer,
   TopInfo,
@@ -126,4 +140,5 @@ export {
   BuyButton,
   BottomInfo,
   TextBox,
+  Return,
 };

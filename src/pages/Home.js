@@ -12,6 +12,7 @@ export default function Home() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     home()
       .then((res) => {
         if (res.status === 200) {

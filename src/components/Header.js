@@ -117,40 +117,42 @@ export default function Header() {
           <h1>Bookland</h1>
         </Link>
         <RightContainer>
-          <Link to="/cart">
-            <Cart />
-          </Link>
           {jsonToken ? (
-            <UserArea>
-              <ProfilePhoto
-                src={jsonToken.picture ? jsonToken.picture : userPhoto}
-                onClick={() => toggleMenu()}
-              />
-              {showMenu ? (
-                <>
-                  <ArrowUp
-                    onClick={() => toggleMenu()}
-                  />
-                  <Menu ref={menu}>
-                    <div>
-                      <button
-                        onClick={() => logOut()}
-                        type="button"
-                      >
-                        LogOut
-                      </button>
-                      <Out
-                        onClick={() => logOut()}
-                      />
-                    </div>
-                  </Menu>
-                </>
-              ) : (
-                <ArrowDown
+            <>
+              <Link to="/cart">
+                <Cart />
+              </Link>
+              <UserArea>
+                <ProfilePhoto
+                  src={jsonToken.picture ? jsonToken.picture : userPhoto}
                   onClick={() => toggleMenu()}
                 />
-              )}
-            </UserArea>
+                {showMenu ? (
+                  <>
+                    <ArrowUp
+                      onClick={() => toggleMenu()}
+                    />
+                    <Menu ref={menu}>
+                      <div>
+                        <button
+                          onClick={() => logOut()}
+                          type="button"
+                        >
+                          LogOut
+                        </button>
+                        <Out
+                          onClick={() => logOut()}
+                        />
+                      </div>
+                    </Menu>
+                  </>
+                ) : (
+                  <ArrowDown
+                    onClick={() => toggleMenu()}
+                  />
+                )}
+              </UserArea>
+            </>
           ) : (
             <>
               <Link to="/sign-up">

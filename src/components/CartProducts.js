@@ -8,7 +8,7 @@
 import {
   useContext, useEffect, useState,
 } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoTrashBin as TrashIcon } from 'react-icons/io5';
 import { getCartProducts, deleteCartProduct, requestUpdateQuantity } from '../services/api';
@@ -28,6 +28,7 @@ export default function CartProducts() {
     getCartProducts(token)
       .then((res) => {
         setUserProducts(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err.response);
@@ -87,7 +88,7 @@ export default function CartProducts() {
     return (
       <EmptyCartBox>
         <p>You don`t have any books in your cart!</p>
-        <button type="button" onClick={() => history.push('/')}>Keep shopping</button>
+        <button type="button" onClick={() => history.push('/')}>Keep shopping!</button>
       </EmptyCartBox>
     );
   }
@@ -102,7 +103,9 @@ export default function CartProducts() {
           <BookAndInfo>
             <img src={image} alt="" />
             <BookInfo>
-              <h2>{name}</h2>
+              <Link to={`/product/${id}`}>
+                <h2>{name}</h2>
+              </Link>
               <h3>{(price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h3>
               <InfoButtons>
                 <input type="number" min="1" max="100" value={book_quantity} onChange={(e) => changeBookQuantity(e, id)} />
@@ -129,7 +132,7 @@ const EmptyCartBox = styled.div`
     padding: 30px 30px 20px;
     background-color: #e5e5e5;
     border-radius: 10px;
-    border: 2px solid #AE3E3E;
+    /* border: 2px solid #AE3E3E; */
     box-shadow: -3px 5px 15px #515151;
     position: relative;
     gap: 25px;
@@ -176,7 +179,7 @@ const CartItemBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px;
-  padding-bottom: 18px;
+  padding-bottom: 22px;
   border-radius: 10px;
   box-shadow: -3px 5px 15px #515151;
 
@@ -187,8 +190,9 @@ const CartItemBox = styled.div`
     cursor: pointer;
   }
   details {
-    font-size: 18px;
-    line-height:21px;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: justify;
   }
 `;
 const BookAndInfo = styled.div`

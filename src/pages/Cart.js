@@ -5,7 +5,7 @@
 /* eslint-disable no-constant-condition */
 import { IoCartSharp } from 'react-icons/io5';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageContentContainer from '../assets/styles/PageModelStyle.js';
 import TitleBox from '../components/TitleBox.js';
 import cartImg from '../assets/images/cart1.jpg';
@@ -16,9 +16,14 @@ import RightBar from '../components/RightBar.js';
 import CheckoutSummary from '../components/CheckoutSummary';
 import Header from '../components/Header';
 import DivGhost from '../components/GhostDiv';
+import Footer from '../components/Footer';
 
 export default function Cart() {
   const [cartSection, setCartSection] = useState('cart');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -53,6 +58,7 @@ export default function Cart() {
           />
         </CartContainer>
       </PageContentContainer>
+      <Footer />
     </>
   );
 }
