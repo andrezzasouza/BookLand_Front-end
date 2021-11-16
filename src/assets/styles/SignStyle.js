@@ -57,9 +57,11 @@ const StyledInput = styled.input`
   font-size: 20px;
   color: #000000;
   outline: none;
-
   :not(:placeholder-shown):invalid {
     background-color: #e28c8c;
+  }
+  :disabled {
+    background: #c4c4c4;
   }
 `;
 const StyledAlertBox = styled.span`

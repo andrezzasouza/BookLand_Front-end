@@ -5,6 +5,7 @@ import HomeCarousel from '../components/Carousel';
 import HomeContainer from '../components/HomeContainer';
 import Footer from '../components/Footer';
 import { home } from '../services/api';
+import DivGhost from '../components/GhostDiv';
 
 export default function Home() {
   const [books, setBooks] = useState([]);
@@ -42,6 +43,7 @@ export default function Home() {
   return (
     <>
       <Header />
+      <DivGhost />
       <HomeCarousel />
       <HomeContainer
         books={books}

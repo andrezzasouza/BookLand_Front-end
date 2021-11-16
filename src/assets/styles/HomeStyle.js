@@ -5,7 +5,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 
 const CarouselContainer = styled(Carousel)`
-  margin-top: 70px;
+  width: 100%;
 `;
 
 const CarouselPage = styled.div`
