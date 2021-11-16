@@ -25,10 +25,15 @@ export default function Home() {
         }
       })
       .catch((err) => {
-        const error = err.response.status;
-        if (error === 500) {
+        if (err.response) {
+          if (err.response.status === 500) {
+            setMessage(
+              "It wasn't possible to access the server. Please, try again later!",
+            );
+          }
+        } else {
           setMessage(
-            "It wasn't possible to access the server. Please, try again later!",
+            "Uh, oh. Something's wrong. Please, try again later!",
           );
         }
       });

@@ -56,7 +56,9 @@ export default function SignIn() {
     <StyledPageContainer>
       <StyledSignContent>
         <StyledLogo>
-          <h1>BookLand</h1>
+          <Link to="/">
+            <h1>BookLand</h1>
+          </Link>
           <h2>A fictional bookstore that sells fictional books!</h2>
         </StyledLogo>
         <StyledForm
