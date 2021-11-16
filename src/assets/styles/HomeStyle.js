@@ -30,6 +30,9 @@ const Container = styled.main`
 const ErrorMsg = styled.h2`
   margin: 30px 0 60px;
   text-align: center;
+  font-family: 'Righteous', cursive;
+  font-size: 36px;
+  color: #ae3e3e;
 `;
 
 const BooksContainer = styled.section`
@@ -42,7 +45,8 @@ const BooksContainer = styled.section`
 const BookData = styled.div`
   padding: 15px 15px 10px;
   border-radius: 5px;
-  background-color: lightgray;
+  background-color: #e5e5e5;
+  box-shadow: -3px 5px 15px #515151;
   color: #000000;
   cursor: pointer;
   img {

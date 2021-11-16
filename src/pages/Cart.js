@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import PageContentContainer from '../assets/styles/PageModelStyle.js';
 import TitleBox from '../components/TitleBox.js';
-import cartImg from '../assets/images/solid-color-image.jpeg';
+import cartImg from '../assets/images/cart1.jpg';
 import CartProducts from '../components/CartProducts';
 import CartDelivery from '../components/CartDelivery';
 import CartPayment from '../components/CartPayment';
@@ -104,13 +104,15 @@ const PaymentSection = styled.span`
 const CartIconTop = styled(IoCartSharp)`
   position: absolute;
   top: 100px;
-  font-size: 100px;
+  font-size: 50px;
   color: #ffffff;
-  left: 50px;
-  box-shadow: #000000 -10px 7px 9px;
+  left: 40px;
+  background-color: #ae3e3e;
+  box-shadow: #474646 5px 5px 15px;
   border-radius: 10px;
   cursor: pointer;
-  :hover {
+  padding: 5px;
+  &:hover {
     background-color: #5D1919;
     transform: translateY(-3px);
   }
