@@ -13,6 +13,11 @@ const Modal = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  & > p {
+    color: #ffffff;
+    align-self: flex-start;
+    margin: 0 0 30px;
+  }
   @media (max-width: 790px) {
     width: 100vw;
     height: auto;
@@ -42,8 +47,14 @@ const TopSection = styled.div`
     cursor: pointer;
     font-size: 19.74px;
     margin: 0 0 20px;
-    font-weight: bold;
+  }
+  button {
+    background-color: transparent;
     color: #ffffff;
+    font-weight: bold;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
   }
   @media (max-width: 790px) {
     padding: 10px 0;

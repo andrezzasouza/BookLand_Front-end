@@ -8,7 +8,6 @@ const FooterContainer = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-
   h3 {
     font-family: 'Righteous', cursive;
     font-size: 28px;
