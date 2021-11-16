@@ -11,7 +11,6 @@ export default function TitleBox({ pageTitle, backgroundImg }) {
 }
 
 const TitleContainer = styled.div`
-    margin-top: 70px;
     width: 100%;
     height: 160px;
     display: flex;

@@ -210,7 +210,8 @@ const BookInfo = styled.div`
   width: 100%;
   h2 {
     font-size: 30px;
-    font-weight: 700;
+    color: #AE3E3E;
+    font-family: 'Righteous', cursive;
   }
   h3 {
     font-size: 28px;
@@ -224,8 +225,8 @@ const InfoButtons = styled.span`
     width: 90px;
     height: 40px;
     border: none;
-    background-color: #AE3E3E;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
     font-weight: 700;
     font-size: 25px;
     outline: none;

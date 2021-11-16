@@ -15,6 +15,7 @@ import CartPayment from '../components/CartPayment';
 import RightBar from '../components/RightBar.js';
 import CheckoutSummary from '../components/CheckoutSummary';
 import Header from '../components/Header';
+import DivGhost from '../components/GhostDiv';
 
 export default function Cart() {
   const [cartSection, setCartSection] = useState('cart');
@@ -22,6 +23,7 @@ export default function Cart() {
   return (
     <>
       <Header />
+      <DivGhost />
       <TitleBox pageTitle="Shopping Cart" backgroundImg={cartImg} />
       <CartIconTop onClick={() => window.location.reload()} />
       <PageContentContainer>
