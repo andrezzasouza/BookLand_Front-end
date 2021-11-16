@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import TitleBox from '../components/TitleBox';
 import productImg from '../assets/images/product-image.jpg';
 import Footer from '../components/Footer';
+import DivGhost from '../components/GhostDiv';
 import {
   ProductContainer,
   TopInfo,
@@ -48,6 +49,7 @@ export default function Product() {
   return (
     <>
       <Header />
+      <DivGhost />
       <TitleBox
         pageTitle=""
         backgroundImg={productImg}
