@@ -25,7 +25,7 @@ export default function RightBar({ cartSection, setCartSection }) {
   };
 
   const requireCheckout = () => {
-    if (userPayment) {
+    if (userPayment && userPayment.CVV) {
       const userSession = JSON.parse(localStorage.getItem('userSession'));
       if (!userSession) {
         return history.push('/');

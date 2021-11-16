@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
@@ -5,6 +6,7 @@ import {
   useEffect,
   useRef,
   useCallback,
+  useContext,
 } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { header } from '../services/api';
@@ -25,6 +27,7 @@ import {
   ModalBackground,
   TopSection,
 } from '../assets/styles/ModalStyle';
+import CartContext from '../store/cartContext';
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -32,14 +35,15 @@ export default function Header() {
   const [jsonToken, setJsonToken] = useState('');
   const [showModal, setShowModal] = useState(false);
   const location = useLocation();
-  const history = useHistory;
+  const history = useHistory();
   const modalRef = useRef();
   const menu = useRef();
+  const { setUserAdress, setUserPayment, setUserProducts } = useContext(CartContext);
 
   useEffect(() => {
     setJsonToken(JSON.parse(localStorage.getItem('userSession')));
   }, []);
-
+  console.log(jsonToken);
   useEffect(() => {
     function hideMenu(e) {
       if (showMenu && menu.current !== e.target) {
@@ -79,16 +83,20 @@ export default function Header() {
 
   function logOut() {
     header(jsonToken.token)
-      .then(() => {
+      .then((res) => {
+        console.log(res.status);
         clearStorage();
         setJsonToken('');
+        setUserAdress('');
+        setUserPayment('');
+        setUserProducts([]);
         if (location.pathname.includes('cart')) {
           history.push('/');
         }
       })
-      .catch((res) => {
+      .catch((error) => {
         setShowModal(true);
-        const err = res.response;
+        const err = error.response;
         if (err) {
           if (
             err.status === 500
@@ -107,6 +115,9 @@ export default function Header() {
         }
         clearStorage();
         setJsonToken('');
+        setUserAdress('');
+        setUserPayment('');
+        setUserProducts([]);
       });
   }
 
