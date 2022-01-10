@@ -2,7 +2,7 @@
 
 Bookland is an online bookstore that sells physical books of many types. This project was developed by Andrezza Souza and Pedro Mafra.
 
-You can checkout the deployed app here: 
+You can check the deployed app here: 
 https://bookland-bookstore.vercel.app/
 
 ## Technologies used in the project
