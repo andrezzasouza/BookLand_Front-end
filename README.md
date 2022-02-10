@@ -31,6 +31,7 @@ Main thechnologies used in the construction of the project:<br>
 <p>
   <img src="https://img.shields.io/badge/-Javascript-red?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-React-red?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/-Styled_Components-red?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-Node.js-red?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-Express-red?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-PostgreSQL-red?style=for-the-badge" />
